@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - present Juergen Zimmermann, Hochschule Karlsruhe
+# Copyright (C) 2023 - present Juergen Zimmermann, Hochschule Karlsruhe
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -13,21 +13,29 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-"""Konfiguration für ASGI."""
+"""Data class für die Login-Daten."""
 
-from typing import Final
+from dataclasses import dataclass
 
-from cafe.config.config import app_config
-
-__all__ = ["host_binding", "port"]
+__all__ = ["LoginData"]
 
 
-_server_toml: Final = app_config.get("server", {})
+@dataclass
+class LoginData:
+    """Data class für die Login-Daten."""
 
-host_binding: Final[str] = _server_toml.get("host-binding", "127.0.0.1")
-"""'Host Binding', z.B. 127.0.0.1 (default) oder 0.0.0.0."""
+    username: str
+    """Benutzername"""
+    password: str
+    """Passwort"""
 
-port: Final[int] = _server_toml.get("port", 8000)
-"""Port für den Server (default: 8000)."""
+    class Config:
+        """Beispiel für OpenAPI."""
 
-reload: Final[bool] = bool(_server_toml.get("reload", False))
+        # https://fastapi.tiangolo.com/tutorial/schema-extra-example
+        json_schema_extra = {
+            "example": {
+                "username": "admin",
+                "password": "p",  # NOSONAR
+            },
+        }

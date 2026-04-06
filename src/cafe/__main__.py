@@ -13,26 +13,21 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-"""Konfiguration aus der TOML-Datei einlesen."""
+"""CLI für das Projekt, damit das Modul als Python-Skript ausgeführt werden kann.
 
-from importlib.resources import files
-from importlib.resources.abc import Traversable
-from pathlib import Path
-from tomllib import load
-from typing import Any, Final
+Der Aufruf `python -m cafe` ist dadurch möglich, falls folgende Voraussetzungen
+erfüllt sind:
+- Die virtuelle Umgebung für _venv_ ist aktiviert
+- `sys.path` enthält das Verzeichnis `src` (ggf. die Umgebungsvariable `PYTHONPATH` auf
+  `src` setzen)
+Diese Möglichkeit sollte in einem Docker-Image genutzt werden, so dass der Package
+Manager _uv_ zur Laufzeit nicht benötigt wird und deshalb das Image klein gehalten
+werden kann.
+"""
 
-from loguru import logger
+from cafe.asgi_server import run
 
-__all__ = ["app_config", "resources_path"]
+__all__ = ["run"]
 
-
-resources_path: Final[str] = "cafe.config.resources"
-
-_resources_traversable: Final[Traversable] = files(resources_path)
-_config_file: Final[Traversable] = _resources_traversable / "app.toml"
-logger.debug("config: _config_file={}", _config_file)
-
-
-with Path(str(_config_file)).open(mode="rb") as reader:
-    app_config: Final[dict[str, Any]] = load(reader)
-    logger.debug("config: app_config={}", app_config)
+if __name__ == "__main__":
+    run()

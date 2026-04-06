@@ -20,7 +20,7 @@ from typing import Final
 
 from loguru import logger
 
-from patient.config.config import app_config
+from cafe.config.config import app_config
 
 __all__ = [
     "csv_config",
@@ -72,7 +72,7 @@ keycloak_config = KeycloakConfig(
 
 logger.debug("keycloak: keycloak_config={}", keycloak_config)
 
-csv_config: Final = _keycloak_toml.get("csv", "/csv/patient.csv")
+csv_config: Final = _keycloak_toml.get("csv", "/csv/cafe.csv")
 logger.debug("keycloak: csv={}", csv_config)
 
 
