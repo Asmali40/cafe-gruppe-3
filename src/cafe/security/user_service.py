@@ -53,15 +53,15 @@ class UserService:
             )
             logger.debug("client_id={} für 'python-client'", self.client_uuid)
             roles = self.keycloak_admin.get_client_roles(client_id=self.client_uuid)
-            roles_patient = [role for role in roles if role["name"] == "patient"]
-            # Rolle 'patient' in Keycloak fuer KeycloakAdmin.assign_client_role() und
+            roles_cafe = [role for role in roles if role["name"] == "cafe"]
+            # Rolle 'cafe' in Keycloak fuer KeycloakAdmin.assign_client_role() und
             # ist ein dict mit Schluesseln "id", "name", "description", ...
-            self.rolle_patient = roles_patient[0]
-            logger.debug("rolle_patient={}", self.rolle_patient)
+            self.rolle_cafe = roles_cafe[0]
+            logger.debug("rolle_cafe={}", self.rolle_cafe)
         except KeycloakConnectionError:
             logger.error("Keine Verbindung zu Keycloak! Ist Keycloak gestartet?")
             self.client_uuid = "N/A"
-            self.rolle_patient = None
+            self.rolle_cafe = None
 
     def username_exists(self, username: str) -> bool:
         """Abfrage, ob ein Benutzername bereits existiert.
@@ -126,7 +126,7 @@ class UserService:
         logger.debug("user_id={}", user_id)
 
         self.keycloak_admin.assign_client_role(
-            user_id=user_id, client_id=self.client_uuid, roles=[self.rolle_patient]
+            user_id=user_id, client_id=self.client_uuid, roles=[self.rolle_cafe]
         )
         return user_id
 
