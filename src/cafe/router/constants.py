@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - present Juergen Zimmermann, Hochschule Karlsruhe
+# Copyright (C) 2023 - present Juergen Zimmermann, Hochschule Karlsruhe
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -13,21 +13,20 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-"""Konfiguration für ASGI."""
+"""Konstanten für den Router."""
 
 from typing import Final
 
-from cafe.config.config import app_config
+__all__ = [
+    "ETAG",
+    "IF_MATCH",
+    "IF_MATCH_MIN_LEN",
+    "IF_NONE_MATCH",
+    "IF_NONE_MATCH_MIN_LEN",
+]
 
-__all__ = ["host_binding", "port"]
-
-
-_server_toml: Final = app_config.get("server", {})
-
-host_binding: Final[str] = _server_toml.get("host-binding", "127.0.0.1")
-"""'Host Binding', z.B. 127.0.0.1 (default) oder 0.0.0.0."""
-
-port: Final[int] = _server_toml.get("port", 8000)
-"""Port für den Server (default: 8000)."""
-
-reload: Final[bool] = bool(_server_toml.get("reload", False))
+ETAG: Final = "ETag"
+IF_MATCH: Final = "if-match"
+IF_MATCH_MIN_LEN: Final = 3
+IF_NONE_MATCH: Final = "if-none-match"
+IF_NONE_MATCH_MIN_LEN: Final = 3

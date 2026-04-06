@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - present Juergen Zimmermann, Hochschule Karlsruhe
+# Copyright (C) 2025 - present Juergen Zimmermann, Hochschule Karlsruhe
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -13,21 +13,22 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-"""Konfiguration für ASGI."""
+"""Factory-Funktionen für Dependency Injection."""
 
-from typing import Final
+from cafe.security.token_service import TokenService
+from cafe.security.user_service import UserService
 
-from cafe.config.config import app_config
-
-__all__ = ["host_binding", "port"]
+_token_service = TokenService()  # Singleton-Objekt
 
 
-_server_toml: Final = app_config.get("server", {})
+def get_token_service() -> TokenService:
+    """Factory-Funktion für TokenService."""
+    return _token_service
 
-host_binding: Final[str] = _server_toml.get("host-binding", "127.0.0.1")
-"""'Host Binding', z.B. 127.0.0.1 (default) oder 0.0.0.0."""
 
-port: Final[int] = _server_toml.get("port", 8000)
-"""Port für den Server (default: 8000)."""
+_user_service = UserService()  # Singleton-Objekt
 
-reload: Final[bool] = bool(_server_toml.get("reload", False))
+
+def get_user_service() -> UserService:
+    """Factory-Funktion für UserService."""
+    return _user_service

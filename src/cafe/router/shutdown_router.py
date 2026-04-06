@@ -13,26 +13,27 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-"""Konfiguration aus der TOML-Datei einlesen."""
+"""REST-Schnittstelle für Shutdown."""
 
-from importlib.resources import files
-from importlib.resources.abc import Traversable
-from pathlib import Path
-from tomllib import load
+import os
+import signal
 from typing import Any, Final
 
+from fastapi import APIRouter, Depends
 from loguru import logger
 
-__all__ = ["app_config", "resources_path"]
+from cafe.security.role import Role
+from cafe.security.roles_required import RolesRequired
+
+__all__ = ["router"]
 
 
-resources_path: Final[str] = "cafe.config.resources"
-
-_resources_traversable: Final[Traversable] = files(resources_path)
-_config_file: Final[Traversable] = _resources_traversable / "app.toml"
-logger.debug("config: _config_file={}", _config_file)
+router: Final = APIRouter(tags=["Admin"])
 
 
-with Path(str(_config_file)).open(mode="rb") as reader:
-    app_config: Final[dict[str, Any]] = load(reader)
-    logger.debug("config: app_config={}", app_config)
+@router.post("/shutdown", dependencies=[Depends(RolesRequired(Role.ADMIN))])
+def shutdown() -> dict[str, Any]:
+    """Der Server wird heruntergefahren."""
+    logger.warning("Server shutting down without calling cleanup handlers.")
+    os.kill(os.getpid(), signal.SIGINT)  # NOSONAR
+    return {"message": "Server is shutting down..."}
