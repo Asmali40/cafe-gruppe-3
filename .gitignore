@@ -13,7 +13,7 @@ docs/diagramme/out
 extras/**/__pycache__
 htmlcov
 log
-site
+siteD
 src/cafe/**/__pycache__
 src/cafe/cafe.egg-info
 tests/**/__pycache__
@@ -25,5 +25,5 @@ dependency-check-report.html
 
 # Sensible Daten
 .env
-extras/compose/db/postgres/db_password.txt
+extras/compose/postgres/password.txt
 src/cafe/config/resources/tls/private-key.pem
