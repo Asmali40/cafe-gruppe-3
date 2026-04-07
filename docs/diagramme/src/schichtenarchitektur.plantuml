@@ -44,11 +44,11 @@ package cafe #DDDDDD {
 
     package entity #FFFFFF {
         [Cafe]
-        [Adresse]
-        [Rechnung]
+        [CafeManager]
+        [Produkt]
 
-        [Cafe] -right[hidden]-> [Adresse]
-        [Adresse] -down[hidden]-> [Rechnung]
+        [Cafe] -right[hidden]-> [CafeManager]
+        [CafeManager] -down[hidden]-> [Produkt]
     }
 
     [CafeGetController] ..> [Cafe]

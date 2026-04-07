@@ -47,7 +47,7 @@ def post(
 
 @cafe_write_router.put(
     "/{cafe_id}",
-    dependencies=[Depends(RolesRequired([Role.ADMIN, Role.PATIENT]))],
+    dependencies=[Depends(RolesRequired([Role.ADMIN, Role.CAFE]))],
 )
 def put(
     cafe_id: int,
@@ -114,7 +114,7 @@ def put(
 
 @cafe_write_router.delete(
     "/{cafe_id}",
-    dependencies=[Depends(RolesRequired([Role.ADMIN, Role.PATIENT]))],
+    dependencies=[Depends(RolesRequired([Role.ADMIN, Role.CAFE]))],
 )
 def delete_by_id(
     cafe_id: int,
