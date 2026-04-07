@@ -1,0 +1,13 @@
+id;name;preis;waehrung;cafe_id
+1;Espresso;2.50;EUR;1
+2;Cappuccino;3.20;EUR;1
+20;Latte Macchiato;3.80;EUR;20
+21;Americano;2.80;EUR;20
+30;Flat White;3.50;EUR;30
+31;Mocha;4.00;EUR;30
+40;Filterkaffee;2.20;EUR;40
+41;Iced Coffee;3.70;EUR;40
+50;Cold Brew;3.90;EUR;50
+51;Espresso Doppio;3.00;EUR;50
+60;Milchkaffee;3.30;EUR;60
+61;Kakao;2.90;EUR;60
