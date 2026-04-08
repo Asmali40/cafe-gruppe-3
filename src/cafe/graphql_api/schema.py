@@ -101,6 +101,23 @@ class Query:
 class Mutation:
     """Mutations, um Café-Daten anzulegen."""
 
+    # Mutation, weil evtl. der Login-Zeitpunkt gespeichert wird
+    @strawberry.mutation
+    def login(self, username: str, password: str) -> LoginResult:
+        """Einen Token zu Benutzername und Passwort ermitteln.
+
+        :param username: Benutzername
+        :param password: Passwort
+        :rtype: LoginResult
+        """
+        logger.debug("username={}, password={}", username, password)
+        token_mapping = _token_service.token(username=username, password=password)
+
+        token = token_mapping["access_token"]
+        user = _token_service.get_user_from_token(token)
+        roles: Final = [role.value for role in user.roles]
+        return LoginResult(token=token, expiresIn="1d", roles=roles)
+
     @strawberry.mutation
     def create(self, cafe_input: CafeInput) -> CreatePayload:
         """Ein neues Café anlegen.
