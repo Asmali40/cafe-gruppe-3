@@ -12,27 +12,26 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
+"""Modul für den Zugriffsschutz."""
 
-"""Konfiguration aus der TOML-Datei einlesen."""
+from cafe.security.auth_router import router, token
+from cafe.security.exceptions import AuthorizationError, LoginError
+from cafe.security.response_headers import set_response_headers
+from cafe.security.role import Role
+from cafe.security.roles_required import RolesRequired
+from cafe.security.token_service import TokenService
+from cafe.security.user import User
+from cafe.security.user_service import UserService
 
-from importlib.resources import files
-from importlib.resources.abc import Traversable
-from pathlib import Path
-from tomllib import load
-from typing import Any, Final
-
-from loguru import logger
-
-__all__ = ["app_config", "resources_path"]
-
-
-resources_path: Final[str] = "cafe.config.resources"
-
-_resources_traversable: Final[Traversable] = files(resources_path)
-_config_file: Final[Traversable] = _resources_traversable / "app.toml"
-logger.debug("config: _config_file={}", _config_file)
-
-
-with Path(str(_config_file)).open(mode="rb") as reader:
-    app_config: Final[dict[str, Any]] = load(reader)
-    logger.debug("config: app_config={}", app_config)
+__all__ = [
+    "AuthorizationError",
+    "LoginError",
+    "Role",
+    "RolesRequired",
+    "TokenService",
+    "User",
+    "UserService",
+    "router",
+    "set_response_headers",
+    "token",
+]

@@ -13,21 +13,31 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-"""Konfiguration für ASGI."""
+"""Entity-Klasse für Benutzerdaten."""
 
-from typing import Final
+from dataclasses import dataclass
 
-from cafe.config.config import app_config
-
-__all__ = ["host_binding", "port"]
+from cafe.security.role import Role
 
 
-_server_toml: Final = app_config.get("server", {})
+@dataclass()
+class User:
+    """Entity-Klasse für Benutzerdaten."""
 
-host_binding: Final[str] = _server_toml.get("host-binding", "127.0.0.1")
-"""'Host Binding', z.B. 127.0.0.1 (default) oder 0.0.0.0."""
+    username: str
+    """Benutzername."""
 
-port: Final[int] = _server_toml.get("port", 8000)
-"""Port für den Server (default: 8000)."""
+    email: str
+    """Emailadresse."""
 
-reload: Final[bool] = bool(_server_toml.get("reload", False))
+    nachname: str
+    """Nachname."""
+
+    vorname: str
+    """Vorname."""
+
+    roles: list[Role]
+    """Rollen als Liste von Enums."""
+
+    password: str | None = None
+    """Passwort."""

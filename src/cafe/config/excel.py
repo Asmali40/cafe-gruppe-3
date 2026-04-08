@@ -17,7 +17,7 @@
 
 from typing import Final
 
-from patient.config.config import app_config
+from cafe.config.config import app_config
 
 __all__ = ["excel_enabled"]
 
