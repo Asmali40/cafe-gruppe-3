@@ -37,6 +37,7 @@ CREATE TABLE IF NOT EXISTS cafe (
     kategorie     INTEGER NOT NULL CHECK (kategorie >= 1 AND kategorie <= 9),
     gruendungsdatum DATE NOT NULL,
     kaffeesorten  JSONB,
+    username      TEXT NOT NULL,
     erzeugt       TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     aktualisiert  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );

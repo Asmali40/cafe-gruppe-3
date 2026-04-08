@@ -79,7 +79,7 @@ class KeycloakPopulateService:
                     kopfzeile = False
                     continue
 
-                username = row[11]
+                username = row[7]
                 if username == "admin":
                     continue
 
