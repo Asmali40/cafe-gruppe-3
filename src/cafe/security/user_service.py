@@ -125,6 +125,8 @@ class UserService:
         )
         logger.debug("user_id={}", user_id)
 
+        if self.rolle_cafe is None:
+            raise ValueError("Keycloak-Rolle 'cafe' nicht verfügbar")
         self.keycloak_admin.assign_client_role(
             user_id=user_id, client_id=self.client_uuid, roles=[self.rolle_cafe]
         )
