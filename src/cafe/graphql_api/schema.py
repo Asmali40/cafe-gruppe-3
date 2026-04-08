@@ -48,6 +48,12 @@ class Query:
         :rtype: CafeDTO | None
         """
         logger.debug("cafe_id={}", cafe_id)
+
+        request: Final[Request] = info.context.get("request")
+        user: Final = _token_service.get_user_from_request(request=request)
+        if user is None:
+            return None
+
         try:
             cafe_dto: Final = _service.find_by_id(cafe_id=int(cafe_id))
         except NotFoundError:
@@ -66,6 +72,11 @@ class Query:
         :rtype: Sequence[CafeDTO]
         """
         logger.debug("suchparameter={}", suchparameter)
+
+        request: Final[Request] = info.context["request"]
+        user: Final = _token_service.get_user_from_request(request)
+        if user is None or Role.ADMIN not in user.roles:
+            return []
 
         suchparameter_dict: Final[dict[str, str]] = dict(vars(suchparameter))
         suchparameter_filtered = {
