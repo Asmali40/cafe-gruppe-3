@@ -13,26 +13,23 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-"""Konfiguration aus der TOML-Datei einlesen."""
-
-from importlib.resources import files
-from importlib.resources.abc import Traversable
-from pathlib import Path
-from tomllib import load
-from typing import Any, Final
-
-from loguru import logger
-
-__all__ = ["app_config", "resources_path"]
+"""Exceptions beim Zugriffsschutz."""
 
 
-resources_path: Final[str] = "cafe.config.resources"
+class LoginError(Exception):
+    """Exception, falls Benutzername oder Passwort fehlerhaft ist."""
 
-_resources_traversable: Final[Traversable] = files(resources_path)
-_config_file: Final[Traversable] = _resources_traversable / "app.toml"
-logger.debug("config: _config_file={}", _config_file)
+    def __init__(
+        self,
+        username: str | None = None,
+    ) -> None:
+        """Initialisierung von LoginError mit fehlerhaftem Benutzername oder Passwort.
+
+        :param username: Benutzername
+        """
+        super().__init__(f"Fehlerhafte Benutzerdaten fuer {username}")
+        self.username = username
 
 
-with Path(str(_config_file)).open(mode="rb") as reader:
-    app_config: Final[dict[str, Any]] = load(reader)
-    logger.debug("config: app_config={}", app_config)
+class AuthorizationError(Exception):
+    """Exception, falls der "Authorization"-String fehlt oder fehlerhaft ist."""

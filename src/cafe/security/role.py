@@ -13,21 +13,16 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-"""Konfiguration für ASGI."""
+"""Enum für Rollen."""
 
-from typing import Final
-
-from cafe.config.config import app_config
-
-__all__ = ["host_binding", "port"]
+from enum import StrEnum
 
 
-_server_toml: Final = app_config.get("server", {})
+class Role(StrEnum):
+    """Enum für Rollen."""
 
-host_binding: Final[str] = _server_toml.get("host-binding", "127.0.0.1")
-"""'Host Binding', z.B. 127.0.0.1 (default) oder 0.0.0.0."""
+    ADMIN = "ADMIN"
+    """Rolle für die Administration."""
 
-port: Final[int] = _server_toml.get("port", 8000)
-"""Port für den Server (default: 8000)."""
-
-reload: Final[bool] = bool(_server_toml.get("reload", False))
+    PATIENT = "PATIENT"
+    """Rolle registrierter Patient."""

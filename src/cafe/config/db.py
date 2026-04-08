@@ -21,7 +21,7 @@ from typing import TYPE_CHECKING, Final, Literal
 from loguru import logger
 from sqlalchemy.engine import URL
 
-from patient.config.config import app_config, resources_path
+from cafe.config.config import app_config, resources_path
 
 if TYPE_CHECKING:
     from importlib.resources.abc import Traversable
@@ -44,9 +44,9 @@ db_dialect: Final[Literal["postgresql"]] = _db_toml.get(
 logger.debug("db: db_dialect={}", db_dialect)
 
 _drivername = "postgresql+psycopg"
-_dbname: Final[str] = _db_toml.get("name", "patient")
+_dbname: Final[str] = _db_toml.get("name", "cafe")
 _host: Final[str] = _db_toml.get("host", "postgres")
-_username: Final[str] = _db_toml.get("username", "patient")
+_username: Final[str] = _db_toml.get("username", "cafe")
 _password: Final[str] = _db_toml.get("password", "Change Me!")
 _password_admin: Final[str] = _db_toml.get("password-admin", "Change Me!")
 
