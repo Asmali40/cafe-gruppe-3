@@ -12,7 +12,7 @@ from cafe.repository.slice import Slice
 from cafe.router.constants import ETAG, IF_NONE_MATCH, IF_NONE_MATCH_MIN_LEN
 from cafe.router.dependencies import get_service
 from cafe.router.page import Page
-from cafe.security import Role, RolesRequired
+from cafe.security import Role, RolesRequired, User
 from cafe.service import CafeDTO, CafeService
 
 __all__ = ["cafe_router"]
