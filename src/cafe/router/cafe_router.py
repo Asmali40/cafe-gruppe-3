@@ -24,7 +24,7 @@ cafe_router: Final = APIRouter(tags=["Lesen"])
 
 @cafe_router.get(
     "/{cafe_id}",
-    dependencies=[Depends(RolesRequired([Role.ADMIN, Role.PATIENT]))],
+    dependencies=[Depends(RolesRequired([Role.ADMIN, Role.CAFE]))],
 )
 def get_by_id(
     cafe_id: int,

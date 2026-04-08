@@ -1,0 +1,7 @@
+id;version;name;email;kategorie;gruendungsdatum;kaffeesorten;erzeugt;aktualisiert
+1;0;AdminCafe;admin@cafe.com;1;2025-01-01;null;2025-01-01 00:00:00;2025-01-01 00:00:00
+20;0;CafeBerlin;cafeberlin@cafe.de;5;2025-02-10;"[""ESPRESSO""]";2025-02-10 00:00:00;2025-02-10 00:00:00
+30;0;CafeMunich;cafemunich@cafe.de;7;2025-03-15;"[""LATTE"",""CAPPUCCINO""]";2025-03-15 00:00:00;2025-03-15 00:00:00
+40;0;CafeHamburg;cafehamburg@cafe.de;6;2025-04-20;"[""AMERICANO""]";2025-04-20 00:00:00;2025-04-20 00:00:00
+50;0;CafeCologne;cologne@cafe.de;8;2025-05-05;"[""ESPRESSO"",""LATTE""]";2025-05-05 00:00:00;2025-05-05 00:00:00
+60;0;CafeFrankfurt;frankfurt@cafe.de;4;2025-06-01;null;2025-06-01 00:00:00;2025-06-01 00:00:00
