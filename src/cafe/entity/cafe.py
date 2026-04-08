@@ -41,6 +41,9 @@ class Cafe(Base):
     email: Mapped[str] = mapped_column(unique=True)
     """Die eindeutige Emailadresse."""
 
+    username: Mapped[str]
+    """Der Benutzername für Login."""
+
     cafe_manager: Mapped[CafeManager] = relationship(
         back_populates="cafe",
         innerjoin=True,

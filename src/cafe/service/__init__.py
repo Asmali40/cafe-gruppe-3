@@ -8,6 +8,7 @@ from cafe.service.exceptions import (
     EmailExistsError,
     ForbiddenError,
     NotFoundError,
+    UsernameExistsError,
     VersionOutdatedError,
 )
 from cafe.service.mailer import send_mail
@@ -20,6 +21,7 @@ __all__ = [
     "EmailExistsError",
     "ForbiddenError",
     "NotFoundError",
+    "UsernameExistsError",
     "VersionOutdatedError",
     "send_mail",
 ]

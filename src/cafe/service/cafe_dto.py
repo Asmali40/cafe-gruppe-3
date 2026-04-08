@@ -36,6 +36,7 @@ class CafeDTO:
     gruendungsdatum: date
     cafe_manager: CafeManagerDTO
     kaffeesorten: list[Kaffeeart]
+    username: str | None
 
     # asdict kann nicht verwendet werden: Rueckwaertsverweise Cafe - CafeManager
     def __init__(self, cafe: Cafe):
@@ -56,3 +57,4 @@ class CafeDTO:
             if cafe.kaffeesorten_json is not None
             else []
         )
+        self.username = cafe.username if cafe.username is not None else "N/A"
