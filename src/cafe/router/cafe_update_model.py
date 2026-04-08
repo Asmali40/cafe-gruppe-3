@@ -17,7 +17,9 @@ class CafeUpdateModel(BaseModel):
     name: Annotated[
         str,
         StringConstraints(
+            min_length=1,
             max_length=64,
+            strip_whitespace=True,
         ),
     ]
     """Der Name des Cafés."""

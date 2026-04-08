@@ -11,6 +11,7 @@ __all__ = [
     "CafeInput",
     "CafeManagerInput",
     "CreatePayload",
+    "LoginResult",
     "ProduktInput",
     "Suchparameter",
 ]
