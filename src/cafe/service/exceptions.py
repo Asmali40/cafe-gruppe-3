@@ -22,6 +22,18 @@ class EmailExistsError(Exception):
         self.email = email
 
 
+class UsernameExistsError(Exception):
+    """Exception, falls der Benutzername bereits existiert."""
+
+    def __init__(self, username: str | None) -> None:
+        """Initialisierung von UsernameExistsError mit dem Benutzernamen.
+
+        :param username: Bereits existierender Benutzername
+        """
+        super().__init__(f"Existierender Benutzername: {username}")
+        self.username = username
+
+
 class ForbiddenError(Exception):
     """Exception, falls es der Zugriff nicht erlaubt ist."""
 
