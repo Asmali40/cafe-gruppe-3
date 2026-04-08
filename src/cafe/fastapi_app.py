@@ -54,6 +54,7 @@ from cafe.service import (
     EmailExistsError,
     ForbiddenError,
     NotFoundError,
+    UsernameExistsError,
     VersionOutdatedError,
 )
 
@@ -66,6 +67,7 @@ __all__ = [
     "forbidden_error_handler",
     "login_error_handler",
     "not_found_error_handler",
+    "username_exists_error_handler",
     "version_outdated_error_handler",
 ]
 
@@ -235,6 +237,22 @@ def login_error_handler(_request: Request, err: LoginError) -> Response:
     """
     return create_problem_details(
         status_code=status.HTTP_401_UNAUTHORIZED, detail=str(err)
+    )
+
+
+@app.exception_handler(UsernameExistsError)
+def username_exists_error_handler(
+    _request: Request, err: UsernameExistsError
+) -> Response:
+    """Exception-Handling für UsernameExistsError.
+
+    :param err: Exception, falls der Benutzername bereits existiert
+    :return: Response mit Statuscode 422
+    :rtype: Response
+    """
+    return create_problem_details(
+        status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+        detail=str(err),
     )
 
 
