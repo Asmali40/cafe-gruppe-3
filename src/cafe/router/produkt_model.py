@@ -3,7 +3,7 @@
 from decimal import Decimal
 from typing import Annotated
 
-from pydantic import BaseModel, ConfigDict, StringConstraints
+from pydantic import BaseModel, ConfigDict, Field, StringConstraints
 
 from cafe.entity import Produkt
 
@@ -16,7 +16,7 @@ class ProduktModel(BaseModel):
     name: Annotated[str, StringConstraints(max_length=64)]
     """Der Name des Produkts."""
 
-    preis: Decimal
+    preis: Annotated[Decimal, Field(ge=0)]
     """Der Preis des Produkts."""
 
     waehrung: Annotated[str, StringConstraints(pattern=r"^[A-Z]{3}$")]
