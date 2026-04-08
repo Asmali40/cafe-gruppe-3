@@ -4,6 +4,10 @@ from typing import Final
 
 from loguru import logger
 
+from typing import Annotated
+
+from pydantic import StringConstraints
+
 from cafe.entity import Cafe, Kaffeeart
 from cafe.router.cafe_manager_model import CafeManagerModel
 from cafe.router.cafe_update_model import CafeUpdateModel
@@ -24,6 +28,9 @@ class CafeModel(CafeUpdateModel):
     kaffeesorten: list[Kaffeeart]
     """Die Liste mit Kaffeesorten als Enum-Werte."""
 
+    username: Annotated[str, StringConstraints(max_length=20)]
+    """Der Benutzername für Login."""
+
     def to_cafe(self) -> Cafe:
         """Konvertierung in ein Cafe-Objekt für SQLAlchemy.
 
@@ -33,6 +40,7 @@ class CafeModel(CafeUpdateModel):
         logger.debug("self={}", self)
         cafe_dict = self.to_dict()
         cafe_dict["kaffeesorten"] = self.kaffeesorten
+        cafe_dict["username"] = self.username
 
         # double star operator: Dictionary auspacken als Schluessel-Wert-Paare
         cafe: Final = Cafe(**cafe_dict)
