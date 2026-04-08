@@ -41,9 +41,11 @@ def get_by_id(
     :rtype: Response
     :raises NotFoundError: Falls kein Café gefunden wurde
     """
-    logger.debug("cafe_id={}", cafe_id)
+    # User-Objekt ist durch Depends(RolesRequired()) in Request.state gepuffert
+    user: Final[User] = request.state.current_user
+    logger.debug("cafe_id={}, user={}", cafe_id, user)
 
-    cafe: Final = service.find_by_id(cafe_id=cafe_id)
+    cafe: Final = service.find_by_id(cafe_id=cafe_id, user=user)
     logger.debug("{}", cafe)
 
     if_none_match: Final = request.headers.get(IF_NONE_MATCH)
