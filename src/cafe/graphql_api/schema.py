@@ -32,6 +32,7 @@ __all__ = ["graphql_router"]
 _repo: Final = CafeRepository()
 _service: CafeService = CafeService(repo=_repo)
 _write_service: CafeWriteService = CafeWriteService(repo=_repo)
+_token_service: Final = TokenService()
 
 
 @strawberry.type
