@@ -14,8 +14,9 @@ from cafe.repository import (
     Session,
     Slice,
 )
+from cafe.security import Role, User
 from cafe.service.cafe_dto import CafeDTO
-from cafe.service.exceptions import NotFoundError
+from cafe.service.exceptions import ForbiddenError, NotFoundError
 
 __all__ = ["CafeService"]
 
@@ -27,27 +28,43 @@ class CafeService:
         """Konstruktor mit abhängigem CafeRepository."""
         self.repo: CafeRepository = repo
 
-    def find_by_id(self, cafe_id: int) -> CafeDTO:
+    def find_by_id(self, cafe_id: int, user: User) -> CafeDTO:
         """Suche mit der Café-ID.
 
         :param cafe_id: ID für die Suche
+        :param user: User aus dem Token
         :return: Das gefundene Café
         :rtype: CafeDTO
         :raises NotFoundError: Falls kein Café gefunden wurde
+        :raises ForbiddenError: Falls die Café-Daten nicht gelesen werden dürfen
         """
-        logger.debug("cafe_id={}", cafe_id)
+        logger.debug("cafe_id={}, user={}", cafe_id, user)
 
         # Session-Objekt ist die Schnittstelle zur DB, nutzt intern ein Transaktionsobj.
         # implizites "autobegin()" bei einem with-Block
         # durch "with" erhaelt man einen "Context Manager", der die Ressource/Session
         # am Endes des Blocks schliesst
         with Session() as session:
+            user_is_admin: Final = Role.ADMIN in user.roles
+
             if (
                 cafe := self.repo.find_by_id(cafe_id=cafe_id, session=session)
             ) is None:
-                message: Final = f"Kein Café mit der ID {cafe_id}"
-                logger.debug("NotFoundError: {}", message)
-                raise NotFoundError(cafe_id=cafe_id)
+                if user_is_admin:
+                    message: Final = f"Kein Café mit der ID {cafe_id}"
+                    logger.debug("NotFoundError: {}", message)
+                    raise NotFoundError(cafe_id=cafe_id)
+                logger.debug("nicht admin")
+                raise ForbiddenError
+
+            if cafe.username != user.username and not user_is_admin:
+                logger.debug(
+                    "cafe.username={}, user.username={}, user.roles={}",
+                    cafe.username,
+                    user.username,
+                    user.roles,
+                )
+                raise ForbiddenError
 
             cafe_dto: Final = CafeDTO(cafe)
             session.commit()
