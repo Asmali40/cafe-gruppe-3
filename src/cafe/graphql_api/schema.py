@@ -18,7 +18,7 @@ from cafe.graphql_api.graphql_types import (
 )
 from cafe.repository import CafeRepository, Pageable
 from cafe.router.cafe_model import CafeModel
-from cafe.security import Role, TokenService
+from cafe.security import Role, TokenService, UserService
 from cafe.service import (
     CafeDTO,
     CafeService,
@@ -31,7 +31,8 @@ __all__ = ["graphql_router"]
 
 _repo: Final = CafeRepository()
 _service: CafeService = CafeService(repo=_repo)
-_write_service: CafeWriteService = CafeWriteService(repo=_repo)
+_user_service: UserService = UserService()
+_write_service: CafeWriteService = CafeWriteService(repo=_repo, user_service=_user_service)
 _token_service: Final = TokenService()
 
 
@@ -55,7 +56,7 @@ class Query:
             return None
 
         try:
-            cafe_dto: Final = _service.find_by_id(cafe_id=int(cafe_id))
+            cafe_dto: Final = _service.find_by_id(cafe_id=int(cafe_id), user=user)
         except NotFoundError:
             return None
         logger.debug("{}", cafe_dto)

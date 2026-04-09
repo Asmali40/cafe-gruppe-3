@@ -11,7 +11,6 @@ __all__ = [
     "CafeInput",
     "CafeManagerInput",
     "CreatePayload",
-    "LoginResult",
     "ProduktInput",
     "Suchparameter",
 ]
@@ -77,6 +76,9 @@ class CafeInput:
 
     kaffeesorten: list[Kaffeeart]
     """Liste der Kaffeesorten."""
+
+    username: str
+    """Benutzername für Login."""
 
 
 @strawberry.type
