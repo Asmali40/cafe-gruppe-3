@@ -1,0 +1,42 @@
+info:
+  name: Neuer Cafe
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{restUrl}}/cafe"
+  headers:
+    - name: "Content-Type"
+      value: "application/json"
+  body:
+    type: json
+    data: |-
+      {
+          "name": "NeuesCafe",
+          "email": "neuescafe@cafe.de",
+          "kategorie": 4,
+          "gruendungsdatum": "2026-04-09",
+          "kaffeesorten": ["ESPRESSO", "LATTE_MACCHIATO"],
+          "username": "neuescafe"
+      }
+  auth: inherit
+
+runtime:
+  assertions:
+    - expression: res.status
+      operator: eq
+      value: "201"
+    - expression: res.headers.location
+      operator: matches
+      value: \/cafe\/[1-9]\d*$
+    - expression: res.body
+      operator: isString
+    - expression: res.body
+      operator: isEmpty
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -1,41 +1,24 @@
 info:
-  name: Neuer Patient mit bereits existierender Email
+  name: Neuer Cafe mit bereits existierender Email
   type: http
   seq: 2
 
 http:
   method: POST
-  url: "{{restUrl}}"
+  url: "{{restUrl}}/cafe"
   headers:
-    - name: ""
-      value: ""
-      disabled: true
+    - name: "Content-Type"
+      value: "application/json"
   body:
     type: json
     data: |-
       {
-          "nachname": "Testrest",
+          "name": "TestCafe",
           "email": "admin@cafe.com",
-          "kategorie": 1,
-          "has_newsletter": true,
-          "geburtsdatum": "2025-01-01",
-          "homepage": "https://test.rest",
-          "geschlecht": "W",
-          "familienstand": "L",
-          "adresse": {
-              "plz": "12345",
-              "ort": "Restort"
-          },
-          "rechnungen": [
-              {
-                  "betrag": "99.99",
-                  "waehrung": "EUR"
-              }
-          ],
-          "fachaerzte": [
-              "Dr. Test"
-          ],
-          "username": "emailexists"
+          "kategorie": 3,
+          "gruendungsdatum": "2026-04-09",
+          "kaffeesorten": ["ESPRESSO", "CAPPUCCINO"],
+          "username": "testcafe"
       }
   auth:
     type: bearer
