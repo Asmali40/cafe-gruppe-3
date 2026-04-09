@@ -1,0 +1,65 @@
+info:
+  name: Neues Cafe
+  type: graphql
+  seq: 1
+
+graphql:
+  method: POST
+  url: "{{graphqlUrl}}"
+  headers:
+    - name: ""
+      value: ""
+      disabled: true
+  body:
+    query: |-
+      mutation {
+        create(
+          cafeInput: {
+            name: "Cafe Central"
+            email: "central@cafe.com"
+            username: "central123"
+            kategorie: 5
+            gruendungsdatum: "2020-05-10"
+            kaffeesorten: [ESPRESSO, LATTE_MACCHIATO]
+            cafeManager: {
+              vorname: "Gustav"
+              nachname: "Hermann"
+            }
+            produkte: [
+              {
+                name: "Espresso"
+                preis: "2.50"
+                waehrung: "EUR"
+              },
+              {
+                name: "Cappuccino"
+                preis: "3.20"
+                waehrung: "EUR"
+              }
+            ]
+          }
+        ) {
+          id
+        }
+      }
+  auth: inherit
+
+runtime:
+  assertions:
+    - expression: res.status
+      operator: eq
+      value: "200"
+    - expression: res.headers['content-type']
+      operator: eq
+      value: application/json
+    - expression: res.body.data
+      operator: isJson
+    - expression: res.body.data.create.id
+      operator: gte
+      value: "0"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
