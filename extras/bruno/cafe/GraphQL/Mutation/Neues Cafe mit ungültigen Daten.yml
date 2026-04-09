@@ -1,0 +1,86 @@
+info:
+  name: Neues Cafe mit ungültigen Daten
+  type: graphql
+  seq: 2
+
+graphql:
+  method: POST
+  url: "{{graphqlUrl}}"
+  headers:
+    - name: ""
+      value: ""
+      disabled: true
+  body:
+    query: |-
+      mutation {
+        create(
+          cafeInput: {
+            name: ""
+            email: "falsche_email@"
+            username: "central123"
+            kategorie: 0
+            gruendungsdatum: "2025-02-31"
+            kaffeesorten: [ESPRESSO, UNDEFINED_SORT]
+            cafeManager: {
+              vorname: ""
+              nachname: ""
+            }
+            produkte: [
+              {
+                name: ""
+                preis: "-1.00"
+                waehrung: "EU"
+              }
+            ]
+          }
+        ) {
+          id
+        }
+      }
+  auth: inherit
+
+runtime:
+  assertions:
+    - expression: res.status
+      operator: eq
+      value: "200"
+    - expression: res.headers['content-type']
+      operator: eq
+      value: application/json
+    - expression: res.body.errors
+      operator: isArray
+    - expression: res.body.errors
+      operator: length
+      value: "1"
+    - expression: res.body.errors[0].message
+      operator: contains
+      value: name
+    - expression: res.body.errors[0].message
+      operator: contains
+      value: email
+    - expression: res.body.errors[0].message
+      operator: contains
+      value: gruendungsdatum
+    - expression: res.body.errors[0].message
+      operator: contains
+      value: kaffeesorten
+    - expression: res.body.errors[0].message
+      operator: contains
+      value: cafeManager
+    - expression: res.body.errors[0].message
+      operator: contains
+      value: produkte
+    - expression: res.body.errors[0].path
+      operator: isArray
+    - expression: res.body.errors[0].path
+      operator: length
+      value: "1"
+    - expression: res.body.errors[0].path[0]
+      operator: eq
+      value: create
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
