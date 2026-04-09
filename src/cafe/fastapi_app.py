@@ -240,13 +240,12 @@ def login_error_handler(_request: Request, err: LoginError) -> Response:
     )
 
 
-@app.exception_handler(UsernameExistsError)
-def username_exists_error_handler(
-    _request: Request, err: UsernameExistsError
-) -> Response:
-    """Exception-Handling für UsernameExistsError.
+@app.exception_handler(EmailExistsError)
+def email_exists_error_handler(_request: Request, err: EmailExistsError) -> Response:
+    """Exception-Handling für EmailExistsError.
 
-    :param err: Exception, falls der Benutzername bereits existiert
+    :param err: Exception, falls die Emailadresse des neuen oder zu ändernden Cafés
+        bereits existiert
     :return: Response mit Statuscode 422
     :rtype: Response
     """
@@ -256,12 +255,14 @@ def username_exists_error_handler(
     )
 
 
-@app.exception_handler(EmailExistsError)
-def email_exists_error_handler(_request: Request, err: EmailExistsError) -> Response:
-    """Exception-Handling für EmailExistsError.
+@app.exception_handler(UsernameExistsError)
+def username_exists_error_handler(
+    _request: Request,
+    err: UsernameExistsError,
+) -> Response:
+    """Exception-Handling für UsernameExistsError.
 
-    :param err: Exception, falls die Emailadresse des neuen oder zu ändernden cafeen
-        bereits existiert
+    :param err: Exception, falls der Username für das neue Café bereits existiert
     :return: Response mit Statuscode 422
     :rtype: Response
     """

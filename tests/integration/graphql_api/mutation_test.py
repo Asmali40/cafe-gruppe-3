@@ -48,6 +48,7 @@ def test_create() -> None:
                                 waehrung: "EUR"
                             }
                         ]
+                        username: "testgraphql"
                     }
                 ) {
                     id

@@ -25,4 +25,4 @@ class Role(StrEnum):
     """Rolle für die Administration."""
 
     CAFE = "CAFE"
-    """Rolle registrierter Cafe."""
+    """Rolle registriertes Café."""

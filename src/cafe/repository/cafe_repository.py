@@ -248,6 +248,23 @@ class CafeRepository:
         session.delete(cafe)
         logger.debug("ok")
 
+    def exists_username(self, username: str | None, session: Session) -> bool:
+        """Abfrage, ob der Benutzername bereits vergeben ist.
+
+        :param username: Benutzername
+        :param session: Session für SQLAlchemy
+        :return: True, falls der Benutzername bereits vergeben ist, False sonst
+        :rtype: bool
+        """
+        logger.debug("username={}", username)
+        if username is None:
+            return False
+
+        statement: Final = select(Cafe.username).filter_by(username=username)
+        username_db: Final = session.scalar(statement)
+        logger.debug("username_db={}", username_db)
+        return username_db is not None
+
     def find_namen(self, teil: str, session: Session) -> Sequence[str]:
         """Suche Café-Namen zu einem Teilstring.
 

@@ -149,12 +149,9 @@ class TokenService:
             token_decoded = token
         logger.debug("token_decoded={}", token_decoded)
 
-        try:
-            roles: Final[str] = token_decoded["resource_access"][
-                self.keycloak.client_id
-            ]["roles"]
-        except KeyError as err:
-            raise AuthorizationError from err
+        roles: Final[str] = token_decoded["resource_access"][self.keycloak.client_id][
+            "roles"
+        ]
         roles_enum: Final = [Role[role.upper()] for role in roles]
         logger.debug("roles_enum={}", roles_enum)
         return roles_enum

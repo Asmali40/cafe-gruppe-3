@@ -35,7 +35,7 @@ def test_get_cafe_by_id_admin(cafe_id: int) -> None:
 
     # act
     response: Final = get(
-        f"{rest_url}/cafe/{cafe_id}",
+        f"{rest_url}/{cafe_id}",
         headers=headers,
         verify=ctx,
     )
@@ -60,7 +60,7 @@ def test_get_cafe_by_id_not_found(cafe_id: int) -> None:
 
     # act
     response: Final = get(
-        f"{rest_url}/cafe/{cafe_id}",
+        f"{rest_url}/{cafe_id}",
         headers=headers,
         verify=ctx,
     )
@@ -80,7 +80,7 @@ def test_get_cafe_by_id_user() -> None:
 
     # act
     response: Final = get(
-        f"{rest_url}/cafe/{cafe_id}",
+        f"{rest_url}/{cafe_id}",
         headers=headers,
         verify=ctx,
     )
@@ -105,7 +105,7 @@ def test_get_cafe_by_id_not_allowed(cafe_id: int) -> None:
 
     # act
     response: Final = get(
-        f"{rest_url}/cafe/{cafe_id}",
+        f"{rest_url}/{cafe_id}",
         headers=headers,
         verify=ctx,
     )
@@ -125,7 +125,7 @@ def test_get_cafe_by_id_not_allowed_not_found(cafe_id: int) -> None:
 
     # act
     response: Final = get(
-        f"{rest_url}/cafe/{cafe_id}",
+        f"{rest_url}/{cafe_id}",
         headers=headers,
         verify=ctx,
     )
@@ -145,7 +145,7 @@ def test_get_cafe_by_id_invalid_token(cafe_id: int) -> None:
 
     # act
     response: Final = get(
-        f"{rest_url}/cafe/{cafe_id}",
+        f"{rest_url}/{cafe_id}",
         headers=headers,
         verify=ctx,
     )
@@ -159,7 +159,7 @@ def test_get_cafe_by_id_invalid_token(cafe_id: int) -> None:
 @mark.parametrize("cafe_id", [30, 1, 20])
 def test_get_cafe_by_id_ohne_token(cafe_id: int) -> None:
     # act
-    response: Final = get(f"{rest_url}/cafe/{cafe_id}", verify=ctx)
+    response: Final = get(f"{rest_url}/{cafe_id}", verify=ctx)
 
     # assert
     assert response.status_code == HTTPStatus.UNAUTHORIZED
@@ -179,7 +179,7 @@ def test_get_cafe_by_id_etag(cafe_id: int, if_none_match: str) -> None:
 
     # act
     response: Final = get(
-        f"{rest_url}/cafe/{cafe_id}",
+        f"{rest_url}/{cafe_id}",
         headers=headers,
         verify=ctx,
     )
@@ -205,7 +205,7 @@ def test_get_cafe_by_id_etag_invalid(cafe_id: int, if_none_match: str) -> None:
 
     # act
     response: Final = get(
-        f"{rest_url}/cafe/{cafe_id}",
+        f"{rest_url}/{cafe_id}",
         headers=headers,
         verify=ctx,
     )

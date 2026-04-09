@@ -39,6 +39,7 @@ def test_query_id() -> None:
                         preis
                         waehrung
                     }
+                    username
                 }
             }
         """,
@@ -115,6 +116,7 @@ def test_query_email() -> None:
                         preis
                         waehrung
                     }
+                    username
                 }
             }
         """,
@@ -192,6 +194,7 @@ def test_query_name() -> None:
                         preis
                         waehrung
                     }
+                    username
                 }
             }
         """,
@@ -238,3 +241,4 @@ def test_query_name_notfound() -> None:
     cafes: Final = response_body["data"]["cafes"]
     assert isinstance(cafes, list)
     assert len(cafes) == 0
+    assert response_body.get("errors") is None

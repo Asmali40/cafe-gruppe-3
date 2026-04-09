@@ -6,6 +6,7 @@ __all__ = [
     "EmailExistsError",
     "ForbiddenError",
     "NotFoundError",
+    "UsernameExistsError",
     "VersionOutdatedError",
 ]
 

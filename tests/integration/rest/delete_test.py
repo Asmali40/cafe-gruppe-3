@@ -34,7 +34,7 @@ def test_delete_cafe() -> None:
 
     # act
     response: Final = delete(
-        f"{rest_url}/cafe/{cafe_id}",
+        f"{rest_url}/{cafe_id}",
         headers=headers,
         verify=ctx,
     )
@@ -54,7 +54,7 @@ def test_delete_cafe_not_found() -> None:
 
     # act
     response: Final = delete(
-        f"{rest_url}/cafe/{cafe_id}",
+        f"{rest_url}/{cafe_id}",
         headers=headers,
         verify=ctx,
     )

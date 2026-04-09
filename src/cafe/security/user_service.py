@@ -56,7 +56,7 @@ class UserService:
             roles_cafe = [role for role in roles if role["name"] == "cafe"]
             # Rolle 'cafe' in Keycloak fuer KeycloakAdmin.assign_client_role() und
             # ist ein dict mit Schluesseln "id", "name", "description", ...
-            self.rolle_cafe = roles_cafe[0] if roles_cafe else None
+            self.rolle_cafe = roles_cafe[0]
             logger.debug("rolle_cafe={}", self.rolle_cafe)
         except KeycloakConnectionError:
             logger.error("Keine Verbindung zu Keycloak! Ist Keycloak gestartet?")
@@ -125,8 +125,6 @@ class UserService:
         )
         logger.debug("user_id={}", user_id)
 
-        if self.rolle_cafe is None:
-            raise ValueError("Keycloak-Rolle 'cafe' nicht verfügbar")
         self.keycloak_admin.assign_client_role(
             user_id=user_id, client_id=self.client_uuid, roles=[self.rolle_cafe]
         )
