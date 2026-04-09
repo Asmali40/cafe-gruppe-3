@@ -1,0 +1,83 @@
+info:
+  name: Suche id, version, name und mehr von allen Cafes
+  type: graphql
+  seq: 3
+
+graphql:
+  method: POST
+  url: "{{graphqlUrl}}"
+  headers:
+    - name: ""
+      value: ""
+      disabled: true
+  body:
+    query: |-
+      {
+        cafes(suchparameter: {}) {
+          id
+          version
+          name
+          email
+          kategorie
+          gruendungsdatum
+          kaffeesorten
+          username
+          cafeManager {
+            vorname
+            nachname
+          }
+          produkte {
+            name
+            preis
+            waehrung
+          }
+        }
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        test('Body mit den Properties', () => {
+          res.getBody()
+            .data
+            .cafes
+            .forEach(cafe => {
+              const { id, version, name, email, kategorie, gruendungsdatum, kaffeesorten, username, cafeManager, produkte } = cafe;
+              expect(id).to.be.gte(0);
+              expect(version).to.be.gte(0);
+              expect(name).to.be.a('string').that.is.not.empty;
+              expect(email).to.be.a('string').that.is.not.empty;
+              expect(kategorie).to.be.gte(0);
+              expect(gruendungsdatum).to.be.a('string');
+              expect(kaffeesorten).to.be.an('array');
+              expect(username).to.be.a('string').that.is.not.empty;
+              expect(cafeManager).to.be.an('object').that.is.not.empty;
+              expect(cafeManager.vorname).to.be.a('string');
+              expect(cafeManager.nachname).to.be.a('string');
+              expect(produkte).to.be.an('array');
+              produkte.forEach(p => {
+                expect(p.name).to.be.a('string');
+                expect(p.preis).to.be.a('number');
+                expect(p.waehrung).to.be.a('string');
+              });
+            });
+        });
+  assertions:
+    - expression: res.status
+      operator: eq
+      value: "200"
+    - expression: res.headers['content-type']
+      operator: eq
+      value: application/json
+    - expression: res.body.data.cafes
+      operator: isArray
+    - expression: res.body.data.cafes
+      operator: isNotEmpty
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
