@@ -55,7 +55,7 @@ class CafeUpdateModel(BaseModel):
         cafe_dict["id"] = None
         cafe_dict["cafe_manager"] = None
         cafe_dict["produkte"] = []
-        cafe_dict["kaffeesorten"] = None
+        cafe_dict["kaffeesorten"] = []
         cafe_dict["username"] = None
         cafe_dict["erzeugt"] = None
         cafe_dict["aktualisiert"] = None

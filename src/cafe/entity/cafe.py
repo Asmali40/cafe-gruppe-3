@@ -41,7 +41,7 @@ class Cafe(Base):
     email: Mapped[str] = mapped_column(unique=True)
     """Die eindeutige Emailadresse."""
 
-    username: Mapped[str]
+    username: Mapped[str | None]
     """Der Benutzername für Login."""
 
     cafe_manager: Mapped[CafeManager] = relationship(

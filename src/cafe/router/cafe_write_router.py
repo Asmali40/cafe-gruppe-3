@@ -94,7 +94,7 @@ def put(
     try:
         version_int: Final = int(version)
     except ValueError:
-        return create_problem_details(
+        return Response(
             status_code=status.HTTP_412_PRECONDITION_FAILED,
         )
 

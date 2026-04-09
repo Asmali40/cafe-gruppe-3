@@ -1,11 +1,8 @@
 """Pydantic-Model für die Café-Daten."""
 
-from typing import Final
+from typing import Annotated, Final
 
 from loguru import logger
-
-from typing import Annotated
-
 from pydantic import StringConstraints
 
 from cafe.entity import Cafe, Kaffeeart
