@@ -1,0 +1,57 @@
+info:
+  name: Neuer Patient mit bereits existierender Email
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{restUrl}}"
+  headers:
+    - name: ""
+      value: ""
+      disabled: true
+  body:
+    type: json
+    data: |-
+      {
+          "nachname": "Testrest",
+          "email": "admin@cafe.com",
+          "kategorie": 1,
+          "has_newsletter": true,
+          "geburtsdatum": "2025-01-01",
+          "homepage": "https://test.rest",
+          "geschlecht": "W",
+          "familienstand": "L",
+          "adresse": {
+              "plz": "12345",
+              "ort": "Restort"
+          },
+          "rechnungen": [
+              {
+                  "betrag": "99.99",
+                  "waehrung": "EUR"
+              }
+          ],
+          "fachaerzte": [
+              "Dr. Test"
+          ],
+          "username": "emailexists"
+      }
+  auth:
+    type: bearer
+    token: "{{TOKEN}}"
+
+runtime:
+  assertions:
+    - expression: res.status
+      operator: eq
+      value: "422"
+    - expression: res.body.detail
+      operator: contains
+      value: Email
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

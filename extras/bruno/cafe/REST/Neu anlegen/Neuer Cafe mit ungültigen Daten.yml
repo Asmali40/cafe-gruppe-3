@@ -1,0 +1,59 @@
+info:
+  name: Neuer Cafe mit ungültigen Daten
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{restUrl}}/cafe"
+  headers:
+    - name: "Content-Type"
+      value: "application/json"
+  body:
+    type: json
+    data: |-
+      {
+          "name": "",
+          "email": "falsche_email@",
+          "kategorie": 15,
+          "gruendungsdatum": "2026-02-30",
+          "kaffeesorten": ["ESPRESSO", "INVALID_SORT"],
+          "username": ""
+      }
+  auth:
+    type: bearer
+    token: "{{TOKEN}}"
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        test('Fehlermeldungen im Response Body', () => {
+            const body = res.getBody();
+            const props = ['name', 'email', 'kategorie', 'gruendungsdatum', 'kaffeesorten', 'username'];
+
+            // FastAPI
+            if (Object.keys(body).length === 1 && Array.isArray(body.detail)) {
+                expect(body.detail).to.be.a('array').that.is.not.empty;
+                const detailLoc = body.detail.map(elem => elem.loc[1]);
+                expect(detailLoc).to.be.an('array').that.has.a.lengthOf(props.length).to.have.deep.members(props);
+                return;
+            }
+        });
+  assertions:
+    - expression: res.status
+      operator: eq
+      value: "422"
+    - expression: res.headers['content-type']
+      operator: eq
+      value: application/json
+    - expression: res.body.detail
+      operator: isArray
+    - expression: res.body.detail
+      operator: isNotEmpty
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
