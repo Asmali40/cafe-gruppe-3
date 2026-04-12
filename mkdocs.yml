@@ -18,7 +18,7 @@
 # https://www.mkdocs.org/user-guide
 # https://realpython.com/python-project-documentation-with-mkdocs
 
-site_name: patient
+site_name: cafe
 
 nav:
   - Start: index.md
@@ -75,7 +75,7 @@ markdown_extensions:
   - toc:
       permalink: true
 
-watch: [docs, mkdocs.yml, src/patient]
+watch: [docs, mkdocs.yml, src/cafe]
 strict: true
 copyright: Copyright &copy; 2023 - present Jürgen Zimmermann, Hochschule Karlsruhe
 
@@ -88,7 +88,7 @@ plugins:
       default_handler: python
       handlers:
         python:
-          src: src/patient
+          src: src/cafe
           options:
             # default: google
             docstring_style: sphinx
