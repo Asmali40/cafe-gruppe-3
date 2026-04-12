@@ -2,4 +2,4 @@
 
 Das ER-Diagramm für relationale Tabellen:
 
-![file](diagramme/out/ER Diagramm.svg)
+![file](diagramme/out/ER Diagramm Cafe.svg)
