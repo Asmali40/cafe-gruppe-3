@@ -1,5 +1,5 @@
 info:
-  name: Suche nachname von einem Patienten mit nicht-vorhandener ID 999999
+  name: Suche Cafnamen von einem Caf mit nicht-vorhandener ID 999999
   type: graphql
   seq: 2
 
@@ -13,8 +13,8 @@ graphql:
   body:
     query: |-
       {
-        patient(patientId: "999999") {
-          nachname
+        cafe(cafeId: "999999") {
+          name
         }
       }
   auth: inherit
@@ -27,7 +27,7 @@ runtime:
     - expression: res.headers['content-type']
       operator: eq
       value: application/json
-    - expression: res.body.data.patient
+    - expression: res.body.data.cafe
       operator: isNull
 
 settings:

@@ -1,5 +1,5 @@
 info:
-  name: Suche id, version, ... von Patienten mit Nachnamen
+  name: Suche id, version, ... von Cafés mit Namen
   type: graphql
   seq: 6
 
@@ -12,28 +12,20 @@ graphql:
       disabled: true
   body:
     query: |-
-      query ($nachname: String = "Alice") {
-        patienten(suchparameter: {nachname: $nachname}) {
+      query ($name: String = "CafeBerlin") {
+        cafes(suchparameter: {name: $name}) {
           id
           version
           email
           kategorie
-          hasNewsletter
-          geburtsdatum
-          homepage
-          geschlecht
-          familienstand
-          adresse {
-            plz
-            ort
-          }
-          fachaerzte
+          gruendungsdatum
+          kaffeesorten
           username
         }
       }
     variables: |-
       {
-        "nachname": "Alice"
+        "name": "CafeBerlin"
       }
   auth: inherit
 
@@ -44,23 +36,19 @@ runtime:
         test('Body mit den Properties', () => {
           res.getBody()
             .data
-            .patienten
-            .forEach(patient => {
-              const { id, version, email, kategorie, hasNewsletter, geburtsdatum, homepage, geschlecht, familienstand, adresse, fachaerzte, username } = patient;
+            .cafes
+            .forEach(cafe => {
+              const { id, version, email, kategorie, gruendungsdatum, kaffeesorten, username } = cafe;
               expect(id).to.be.gte(0);
               expect(version).to.be.gte(0);
               expect(email).to.be.a('string');
               expect(kategorie).to.be.gte(0);
-              expect(hasNewsletter).to.be.a('boolean');
-              expect(geburtsdatum).to.be.a('string');
-              expect(homepage).to.be.a('string');
-              expect(geschlecht).to.be.a('string');
-              expect(familienstand).to.be.a('string');
-              expect(adresse).to.be.an('object');
-              expect(fachaerzte).to.be.an('array');
+              expect(gruendungsdatum).to.be.a('string');
+              expect(kaffeesorten).to.be.an('array');
               expect(username).to.be.a('string');
             });
         });
+
   assertions:
     - expression: res.status
       operator: eq
@@ -68,9 +56,9 @@ runtime:
     - expression: res.headers['content-type']
       operator: eq
       value: application/json
-    - expression: res.body.data.patienten
+    - expression: res.body.data.cafes
       operator: isArray
-    - expression: res.body.data.patienten
+    - expression: res.body.data.cafes
       operator: isNotEmpty
 
 settings:
