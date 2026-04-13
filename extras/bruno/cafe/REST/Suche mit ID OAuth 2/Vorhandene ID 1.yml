@@ -16,7 +16,7 @@ http:
   auth: inherit
 
 runtime:
-  assertions:
+  variables:
     - expression: res.status
       operator: eq
       value: "200"

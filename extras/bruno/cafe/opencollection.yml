@@ -15,6 +15,25 @@ config:
       bypassProxy: ""
 
 request:
+  auth:
+    type: oauth2
+    flow: resource_owner_password_credentials
+    accessTokenUrl: "{{oidcTokenUrl}}"
+    credentials:
+      clientId: "{{clientId}}"
+      clientSecret: "{{clientSecret}}"
+      placement: body
+    resourceOwner:
+      username: "{{username}}"
+      password: "{{password}}"
+    tokenConfig:
+      id: credentials
+      placement:
+        header: Bearer
+      source: access_token
+    settings:
+      autoFetchToken: true
+      autoRefreshToken: false
   variables:
     - name: baseUrl
       value: https://127.0.0.1:8000
@@ -40,5 +59,17 @@ request:
     - name: baseUrl
       value: http://localhost:5000
       disabled: true
+    - name: clientSecret
+      value: dCP8hqM8U106iTmNZaSkQcC14hInloHK
+    - name: password
+      value: p
+    - name: username
+      value: admin
+    - name: clientId
+      value: python-client
+    - name: restUrl
+      value: https://127.0.0.1:8000/rest
+    - name: graphqlUrl
+      value: https://127.0.0.1:8000/graphql
 bundled: false
 extensions: {}
