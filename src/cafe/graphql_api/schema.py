@@ -32,7 +32,8 @@ __all__ = ["graphql_router"]
 _repo: Final = CafeRepository()
 _service: CafeService = CafeService(repo=_repo)
 _user_service: UserService = UserService()
-_write_service: CafeWriteService = CafeWriteService(repo=_repo, user_service=_user_service)
+_write_service: CafeWriteService = CafeWriteService(repo=_repo,
+                                                    user_service=_user_service)
 _token_service: Final = TokenService()
 
 

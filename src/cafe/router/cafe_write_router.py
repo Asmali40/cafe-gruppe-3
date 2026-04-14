@@ -6,10 +6,10 @@ from fastapi import APIRouter, Depends, Request, Response, status
 from loguru import logger
 
 from cafe.problem_details import create_problem_details
-from cafe.router.constants import IF_MATCH, IF_MATCH_MIN_LEN
-from cafe.router.dependencies import get_write_service
 from cafe.router.cafe_model import CafeModel
 from cafe.router.cafe_update_model import CafeUpdateModel
+from cafe.router.constants import IF_MATCH, IF_MATCH_MIN_LEN
+from cafe.router.dependencies import get_write_service
 from cafe.security import Role, RolesRequired
 from cafe.service import CafeWriteService
 

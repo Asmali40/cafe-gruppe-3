@@ -63,7 +63,7 @@ class CafeInput:
     """Emailadresse des Cafés."""
 
     kategorie: int
-    """Kategorie (Sternebewertung 1–9)."""
+    """Kategorie (Sternebewertung 1-9)."""
 
     gruendungsdatum: date
     """Gründungsdatum des Cafés."""

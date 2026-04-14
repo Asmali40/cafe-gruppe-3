@@ -28,7 +28,7 @@ class CafeUpdateModel(BaseModel):
     """Die eindeutige Emailadresse."""
 
     kategorie: Annotated[int, Field(ge=1, le=9)]
-    """Die Kategorie (Sternebewertung 1–9)."""
+    """Die Kategorie (Sternebewertung 1-9)."""
 
     gruendungsdatum: date
     """Das Gründungsdatum."""

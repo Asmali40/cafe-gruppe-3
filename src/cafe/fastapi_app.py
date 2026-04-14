@@ -43,9 +43,9 @@ from cafe.graphql_api import graphql_router
 from cafe.problem_details import create_problem_details
 from cafe.repository.session_factory import engine
 from cafe.router import (
-    health_router,
     cafe_router,
     cafe_write_router,
+    health_router,
     shutdown_router,
 )
 from cafe.security import AuthorizationError, LoginError, set_response_headers

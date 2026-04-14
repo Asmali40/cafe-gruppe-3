@@ -32,6 +32,7 @@ from locust import HttpUser, constant_throughput, task
 # https://stackoverflow.com/questions/27981545/suppress-insecurerequestwarning-unverified-https-request-is-being-made-in-pytho#answer-44615889
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
+
 # https://docs.locust.io/en/stable/api.html#httpuser-class
 class GetUser(HttpUser):
     """Lasttest für GET-Requests (Cafe)."""
@@ -64,20 +65,20 @@ class GetUser(HttpUser):
 
     @task(100)
     def get_id(self) -> None:
-        """GET /cafe/{id}"""
+        """GET /cafe/{id}."""
         for cafe_id in [1, 20, 30, 40, 50, 60]:
             response = self.client.get(f"/rest/{cafe_id}")
             print(f"{response.json()['id']}")
 
     @task(200)
     def get_name(self) -> None:
-        """GET mit name Query"""
+        """GET mit name Query."""
         for teil in ["cafe", "berlin", "munich", "ham"]:
             self.client.get("/rest", params={"name": teil})
 
     @task(150)
     def get_email(self) -> None:
-        """GET mit email Query"""
+        """GET mit email Query."""
         for email in [
             "admin@cafe.com",
             "cafeberlin@cafe.de",

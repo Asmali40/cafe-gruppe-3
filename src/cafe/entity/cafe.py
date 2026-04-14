@@ -10,8 +10,8 @@ from sqlalchemy.orm import Mapped, mapped_column, reconstructor, relationship
 
 from cafe.entity.base import Base
 from cafe.entity.cafe_manager import CafeManager
-from cafe.entity.produkt import Produkt
 from cafe.entity.kaffeeart import Kaffeeart
+from cafe.entity.produkt import Produkt
 
 
 # noinspection PyUnresolvedReferences
@@ -24,7 +24,7 @@ class Cafe(Base):
     """Der Name des Cafés."""
 
     kategorie: Mapped[int]
-    """Die Kategorie (Sternebewertung 1–9)."""
+    """Die Kategorie (Sternebewertung 1-9)."""
 
     gruendungsdatum: Mapped[date]
     """Das Gründungsdatum."""

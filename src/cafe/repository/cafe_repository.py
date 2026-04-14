@@ -183,7 +183,8 @@ class CafeRepository:
         :param email: Emailadresse
         :param cafe_id: eigene Cafe-ID
         :param session: Session für SQLAlchemy
-        :return: True, falls die Emailadresse bei einer anderen ID existiert, False sonst
+        :return: True, falls die Emailadresse bei einer anderen ID existiert,
+        False sonst
         :rtype: bool
         """
         logger.debug("email={}", email)
