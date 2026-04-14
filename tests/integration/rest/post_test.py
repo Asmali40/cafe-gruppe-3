@@ -19,7 +19,7 @@ def test_post() -> None:
         "email": "testrest@rest.de",
         "kategorie": 3,
         "gruendungsdatum": "2022-02-01",
-        "kaffeesorten": ["ESPRESSO"],
+        "kaffeesorten": ["E"],
         "cafe_manager": {"vorname": "Max", "nachname": "Mustermann"},
         "produkte": [{"name": "Espresso", "preis": "2.50", "waehrung": "EUR"}],
         "username": "testrest",
