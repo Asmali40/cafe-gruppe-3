@@ -16,6 +16,7 @@
 
 """Tests für DELETE für das Cafe-Projekt."""
 
+from http import HTTPStatus
 from typing import Final
 
 from common_test import ctx, login, rest_url
@@ -40,7 +41,7 @@ def test_delete_cafe() -> None:
     )
 
     # assert
-    assert response.status_code == 204
+    assert response.status_code == HTTPStatus.NO_CONTENT
 
 
 @mark.rest
@@ -60,4 +61,4 @@ def test_delete_cafe_not_found() -> None:
     )
 
     # assert
-    assert response.status_code == 204
+    assert response.status_code == HTTPStatus.NO_CONTENT

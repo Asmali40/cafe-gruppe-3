@@ -1,4 +1,4 @@
-# ruff: noqa: D103
+# ruff: noqa: D103, S101
 # Copyright (C) 2023 - present Juergen Zimmermann, Hochschule Karlsruhe
 #
 # This program is free software: you can redistribute it and/or modify
