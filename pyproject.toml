@@ -170,7 +170,7 @@ dependencies = [
     "PyYAML>=6.0.3",
     # https://requests.readthedocs.io
     # fuer python-keycloak
-    "requests==2.32.5",
+    "requests==2.33.0",
     # https://www.sqlalchemy.org
     # nutzt greenlet: unterstuetzt NICHT free-threaded CPython
     "SQLAlchemy>=2.0.48",
@@ -179,7 +179,7 @@ dependencies = [
     # "starlette>=1.0.0",
     "starlette>=0.52.1",
     # https://strawberry.rocks https://github.com/strawberry-graphql/strawberry
-    "strawberry-graphql>=0.311.3",
+    "strawberry-graphql>=0.312.3",
     # https://github.com/astanin/python-tabulate
     "tabulate>=0.10.0",
     # https://urllib3.readthedocs.io
