@@ -135,6 +135,7 @@ def test_put_nicht_vorhanden() -> None:
 def test_put_email_exists() -> None:
     # arrange
     cafe_id: Final = 20
+    if_match: Final = '"1"'
     email_exists: Final = "admin@cafe.com"
 
     geaendertes_cafe: Final = {
@@ -149,7 +150,7 @@ def test_put_email_exists() -> None:
 
     headers = {
         "Authorization": f"Bearer {token}",
-        "If-Match": '"0"',
+        "If-Match": if_match,
     }
 
     # act

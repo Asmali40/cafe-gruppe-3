@@ -73,8 +73,8 @@ def test_get_cafe_by_id_not_found(cafe_id: int) -> None:
 @mark.get_request
 def test_get_cafe_by_id_user() -> None:
     # arrange
-    cafe_id: Final = 1001
-    token: Final = login(username="alice")
+    cafe_id: Final = 20
+    token: Final = login(username="cafeberlin")
     assert token is not None
     headers = {"Authorization": f"Bearer {token}"}
 
@@ -99,7 +99,7 @@ def test_get_cafe_by_id_user() -> None:
 @mark.parametrize("cafe_id", [1, 30])
 def test_get_cafe_by_id_not_allowed(cafe_id: int) -> None:
     # arrange
-    token: Final = login(username="alice")
+    token: Final = login(username="cafeberlin")
     assert token is not None
     headers = {"Authorization": f"Bearer {token}"}
 
@@ -119,7 +119,7 @@ def test_get_cafe_by_id_not_allowed(cafe_id: int) -> None:
 @mark.parametrize("cafe_id", [0, 999999])
 def test_get_cafe_by_id_not_allowed_not_found(cafe_id: int) -> None:
     # arrange
-    token: Final = login(username="alice")
+    token: Final = login(username="cafeberlin")
     assert token is not None
     headers = {"Authorization": f"Bearer {token}"}
 

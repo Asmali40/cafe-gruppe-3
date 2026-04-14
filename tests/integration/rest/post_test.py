@@ -81,7 +81,7 @@ def test_post_email_exists() -> None:
         "email": email_exists,
         "kategorie": 3,
         "gruendungsdatum": "2022-02-01",
-        "kaffeesorten": ["ESPRESSO"],
+        "kaffeesorten": ["E"],
         "cafe_manager": {"vorname": "Max", "nachname": "Mustermann"},
         "produkte": [{"name": "Espresso", "preis": "2.50", "waehrung": "EUR"}],
         "username": "emailexists",
