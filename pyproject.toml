@@ -123,7 +123,7 @@ dependencies = [
     # Foreign Function Interface for Python calling C code, z.B. in cryptography
     "cffi>=2.0.0",
     # https://cryptography.io fuer python-keycloak bzw. jwcrypto
-    "cryptography>=46.0.5",
+    "cryptography>=46.0.6",
     # Fuer Pydantic zur Validierung https://github.com/JoshData/python-email-validator
     "email-validator>=2.3.0",
     # https://fastapi.tiangolo.com einschl. starlette, pydantic, uvicorn
@@ -193,7 +193,7 @@ dependencies = [
 cafe = "cafe:main"
 
 [build-system]
-requires = ["uv_build==0.10.11"]
+requires = ["uv_build==0.11.6"]
 build-backend = "uv_build"
 
 [project.urls]
@@ -222,7 +222,7 @@ dev = [
     # https://locust.io
     "locust>=2.43.3",
     # https://pytest.org
-    "pytest>=9.0.2",
+    "pytest>=9.0.3",
     # https://pytest-cov.readthedocs.io
     "pytest-cov>=7.0.0",
     # https://github.com/pytest-dev/pytest-env
