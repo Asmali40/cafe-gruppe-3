@@ -14,7 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-"""Tests für PUT (Cafe)."""
+"""Tests für PUT."""
 
 from http import HTTPStatus
 from typing import Final
@@ -102,7 +102,7 @@ def test_put_invalid() -> None:
 def test_put_nicht_vorhanden() -> None:
     # arrange
     cafe_id: Final = 999999
-
+    if_match: Final = '"0"'
     geaendertes_cafe: Final = {
         "name": "CafeUpdated",
         "email": EMAIL_UPDATE,
@@ -115,7 +115,7 @@ def test_put_nicht_vorhanden() -> None:
 
     headers = {
         "Authorization": f"Bearer {token}",
-        "If-Match": '"0"',
+        "If-Match": if_match,
     }
 
     # act
@@ -203,7 +203,7 @@ def test_put_ohne_versionsnr() -> None:
 def test_put_alte_versionsnr() -> None:
     # arrange
     cafe_id: Final = 20
-
+    if_match: Final = '"-1"'
     geaendertes_cafe: Final = {
         "name": "CafeUpdated",
         "email": EMAIL_UPDATE,
@@ -216,7 +216,7 @@ def test_put_alte_versionsnr() -> None:
 
     headers = {
         "Authorization": f"Bearer {token}",
-        "If-Match": '"-1"',
+        "If-Match": if_match,
     }
 
     # act
@@ -236,7 +236,7 @@ def test_put_alte_versionsnr() -> None:
 def test_put_ungueltige_versionsnr() -> None:
     # arrange
     cafe_id: Final = 20
-
+    if_match: Final = '"xy"'
     geaendertes_cafe: Final = {
         "name": "CafeUpdated",
         "email": EMAIL_UPDATE,
@@ -249,7 +249,7 @@ def test_put_ungueltige_versionsnr() -> None:
 
     headers = {
         "Authorization": f"Bearer {token}",
-        "If-Match": '"xy"',
+        "If-Match": if_match,
     }
 
     # act
@@ -270,7 +270,7 @@ def test_put_ungueltige_versionsnr() -> None:
 def test_put_versionsnr_ohne_quotes() -> None:
     # arrange
     cafe_id: Final = 20
-
+    if_match: Final = "0"
     geaendertes_cafe: Final = {
         "name": "CafeUpdated",
         "email": EMAIL_UPDATE,
@@ -282,7 +282,7 @@ def test_put_versionsnr_ohne_quotes() -> None:
     assert token is not None
     headers = {
         "Authorization": f"Bearer {token}",
-        "If-Match": "0",
+        "If-Match": if_match,
     }
 
     # act

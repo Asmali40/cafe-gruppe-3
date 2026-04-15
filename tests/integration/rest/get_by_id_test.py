@@ -191,9 +191,7 @@ def test_get_cafe_by_id_etag(cafe_id: int, if_none_match: str) -> None:
 
 @mark.rest
 @mark.get_request
-@mark.parametrize(
-    "cafe_id,if_none_match", [(30, 'xxx"'), (1, "xxx"), (20, "xxx")]
-)
+@mark.parametrize("cafe_id,if_none_match", [(30, 'xxx"'), (1, "xxx"), (20, "xxx")])
 def test_get_cafe_by_id_etag_invalid(cafe_id: int, if_none_match: str) -> None:
     # arrange
     token: Final = login()

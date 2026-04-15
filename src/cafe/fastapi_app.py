@@ -99,7 +99,7 @@ app: Final = FastAPI(lifespan=lifespan)
 # FastAPI-App fuer Metriken fuer Prometheus instrumentieren: Endpunkt /metrics
 Instrumentator().instrument(app).expose(app)
 
-app.add_middleware(GZipMiddleware, minimum_size=500)  # ty:ignore[invalid-argument-type]
+app.add_middleware(GZipMiddleware, minimum_size=500)
 
 
 @app.middleware("http")

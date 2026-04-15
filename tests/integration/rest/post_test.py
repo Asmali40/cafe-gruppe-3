@@ -9,6 +9,8 @@ from common_test import ctx, rest_url
 from httpx import post
 from pytest import mark
 
+token: str | None
+
 
 @mark.rest
 @mark.post_request

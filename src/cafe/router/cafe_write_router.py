@@ -34,6 +34,7 @@ def post(
     :rtype: Response
     :raises ValidationError: Falls es bei Pydantic Validierungsfehler gibt
     :raises EmailExistsError: Falls die Emailadresse bereits existiert
+    :raises UsernameExistsError: Falls der Benutzername bereits existiert
     """
     logger.debug("cafe_model={}", cafe_model)
     cafe_dto: Final = service.create(cafe=cafe_model.to_cafe())
@@ -64,6 +65,7 @@ def put(
     :param service: Injizierter Service für Geschäftslogik
     :return: Response mit Statuscode 204
     :rtype: Response
+    :raises ValidationError: Falls es bei Marshmallow Validierungsfehler gibt
     :raises EmailExistsError: Falls die neue Emailadresse bereits existiert
     :raises NotFoundError: Falls zur ID kein Café existiert
     :raises VersionOutdatedError: Falls die Versionsnummer nicht aktuell ist

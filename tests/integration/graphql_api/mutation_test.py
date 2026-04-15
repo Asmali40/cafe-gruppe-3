@@ -27,6 +27,7 @@ from pytest import mark
 @mark.graphql
 @mark.mutation
 def test_create() -> None:
+    # arrange
     query: Final = {
         "query": """
             mutation {
@@ -57,20 +58,22 @@ def test_create() -> None:
         """,
     }
 
+    # act
     response: Final = post(graphql_url, json=query, verify=ctx)
 
+    # assert
     assert response is not None
     assert response.status_code == HTTPStatus.OK
-
-    body: Final = response.json()
-    assert isinstance(body, dict)
-    assert isinstance(body["data"]["create"]["id"], int)
-    assert body.get("errors") is None
+    response_body: Final = response.json()
+    assert isinstance(response_body, dict)
+    assert isinstance(response_body["data"]["create"]["id"], int)
+    assert response_body.get("errors") is None
 
 
 @mark.graphql
 @mark.mutation
 def test_create_invalid() -> None:
+    # arrange
     query: Final = {
         "query": """
             mutation {
@@ -100,14 +103,14 @@ def test_create_invalid() -> None:
         """,
     }
 
+    # act
     response: Final = post(graphql_url, json=query, verify=ctx)
 
+    # assert
     assert response.status_code == HTTPStatus.OK
-
-    body: Final = response.json()
-    assert isinstance(body, dict)
-    assert body["data"] is None
-
-    errors: Final = body["errors"]
+    response_body: Final = response.json()
+    assert isinstance(response_body, dict)
+    assert response_body["data"] is None
+    errors: Final = response_body["errors"]
     assert isinstance(errors, list)
     assert len(errors) >= 1

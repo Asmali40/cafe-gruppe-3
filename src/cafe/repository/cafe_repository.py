@@ -150,9 +150,7 @@ class CafeRepository:
 
     def _count_rows_name(self, teil: str, session: Session) -> int:
         statement: Final = (
-            select(func.count())
-            .select_from(Cafe)
-            .filter(Cafe.name.ilike(f"%{teil}%"))
+            select(func.count()).select_from(Cafe).filter(Cafe.name.ilike(f"%{teil}%"))
         )
         count: Final = session.execute(statement).scalar()
         return count if count is not None else 0
@@ -224,9 +222,7 @@ class CafeRepository:
         """
         logger.debug("{}", cafe)
 
-        if (
-            cafe_db := self.find_by_id(cafe_id=cafe.id, session=session)
-        ) is None:
+        if (cafe_db := self.find_by_id(cafe_id=cafe.id, session=session)) is None:
             return None
 
         # session.add(cafe_db) nicht notwendig, da bereits in der Session zugegriffen
@@ -277,9 +273,7 @@ class CafeRepository:
         logger.debug("teil={}", teil)
 
         statement: Final = (
-            select(Cafe.name)
-            .filter(Cafe.name.ilike(f"%{teil}%"))
-            .distinct()
+            select(Cafe.name).filter(Cafe.name.ilike(f"%{teil}%")).distinct()
         )
         namen: Final = (session.scalars(statement)).all()
 

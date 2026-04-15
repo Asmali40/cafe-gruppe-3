@@ -49,7 +49,10 @@ def test_login_admin() -> None:
 @mark.login
 def test_login_falsches_passwort() -> None:
     # arrange
-    login_data: Final = {"username": username_admin, "password": "FALSCHES_PASSWORT"}
+    login_data: Final = {
+        "username": username_admin,
+        "password": "FALSCHES_PASSWORT",  # NOSONAR
+    }
 
     # act
     response: Final = post(

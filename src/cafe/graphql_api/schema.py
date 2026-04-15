@@ -32,8 +32,9 @@ __all__ = ["graphql_router"]
 _repo: Final = CafeRepository()
 _service: CafeService = CafeService(repo=_repo)
 _user_service: UserService = UserService()
-_write_service: CafeWriteService = CafeWriteService(repo=_repo,
-                                                    user_service=_user_service)
+_write_service: CafeWriteService = CafeWriteService(
+    repo=_repo, user_service=_user_service
+)
 _token_service: Final = TokenService()
 
 
@@ -64,9 +65,7 @@ class Query:
         return cafe_dto
 
     @strawberry.field
-    def cafes(
-        self, suchparameter: Suchparameter, info: Info
-    ) -> Sequence[CafeDTO]:
+    def cafes(self, suchparameter: Suchparameter, info: Info) -> Sequence[CafeDTO]:
         """Cafés anhand von Suchparameter suchen.
 
         :param suchparameter: name, email usw.
@@ -133,9 +132,7 @@ class Mutation:
 
         cafe_dict = cafe_input.__dict__
         cafe_dict["cafe_manager"] = cafe_input.cafe_manager.__dict__
-        cafe_dict["produkte"] = [
-            produkt.__dict__ for produkt in cafe_input.produkte
-        ]
+        cafe_dict["produkte"] = [produkt.__dict__ for produkt in cafe_input.produkte]
 
         cafe_model: Final = CafeModel.model_validate(cafe_dict)
         cafe_dto: Final = _write_service.create(cafe=cafe_model.to_cafe())

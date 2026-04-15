@@ -14,7 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-"""Tests für GET mit Query-Parameter (Cafe)."""
+"""Tests für GET mit Query-Parameter."""
 
 from http import HTTPStatus
 from typing import Final

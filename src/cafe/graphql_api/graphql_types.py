@@ -95,9 +95,7 @@ class LoginResult:
 
     token: str
     """Token des eingeloggten Users."""
-
     expiresIn: str  # noqa: N815  # NOSONAR
     """Gültigkeitsdauer des Tokens."""
-
     roles: list[str]
     """Rollen des eingeloggten Users."""

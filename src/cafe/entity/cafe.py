@@ -29,7 +29,7 @@ class Cafe(Base):
     gruendungsdatum: Mapped[date]
     """Das Gründungsdatum."""
 
-    kaffeesorten: InitVar[list[Kaffeeart] | None]
+    kaffeesorten: InitVar[list[Kaffeeart] | None]  # ty: ignore[invalid-type-form]
     """Die transiente Liste mit Kaffeesorten als Enum-Werte."""
 
     id: Mapped[int | None] = mapped_column(
@@ -146,6 +146,6 @@ class Cafe(Base):
             + f"name={self.name}, email={self.email}, "
             + f"kategorie={self.kategorie}, "
             + f"gruendungsdatum={self.gruendungsdatum}, "
-            + f"kaffeesorten_json={self.kaffeesorten_json}, "
+            + f"kaffeesorten_json={self.kaffeesorten_json}, username={self.username}, "
             + f"erzeugt={self.erzeugt}, aktualisiert={self.aktualisiert})"
         )

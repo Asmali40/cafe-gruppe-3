@@ -42,8 +42,6 @@ class CafeModel(CafeUpdateModel):
         # double star operator: Dictionary auspacken als Schluessel-Wert-Paare
         cafe: Final = Cafe(**cafe_dict)
         cafe.cafe_manager = self.cafe_manager.to_cafe_manager()
-        cafe.produkte = [
-            produkt_model.to_produkt() for produkt_model in self.produkte
-        ]
+        cafe.produkte = [produkt_model.to_produkt() for produkt_model in self.produkte]
         logger.debug("cafe={}", cafe)
         return cafe
