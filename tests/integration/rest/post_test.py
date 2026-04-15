@@ -9,6 +9,8 @@ from common_test import ctx, rest_url
 from httpx import post
 from pytest import mark
 
+token: str | None
+
 
 @mark.rest
 @mark.post_request
@@ -19,7 +21,7 @@ def test_post() -> None:
         "email": "testrest@rest.de",
         "kategorie": 3,
         "gruendungsdatum": "2022-02-01",
-        "kaffeesorten": ["ESPRESSO"],
+        "kaffeesorten": ["E"],
         "cafe_manager": {"vorname": "Max", "nachname": "Mustermann"},
         "produkte": [{"name": "Espresso", "preis": "2.50", "waehrung": "EUR"}],
         "username": "testrest",
@@ -81,7 +83,7 @@ def test_post_email_exists() -> None:
         "email": email_exists,
         "kategorie": 3,
         "gruendungsdatum": "2022-02-01",
-        "kaffeesorten": ["ESPRESSO"],
+        "kaffeesorten": ["E"],
         "cafe_manager": {"vorname": "Max", "nachname": "Mustermann"},
         "produkte": [{"name": "Espresso", "preis": "2.50", "waehrung": "EUR"}],
         "username": "emailexists",

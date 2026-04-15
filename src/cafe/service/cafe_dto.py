@@ -1,5 +1,3 @@
-
-
 """DTO-Klasse für Café-Daten, insbesondere ohne Decorators für SQLAlchemy."""
 
 from dataclasses import dataclass

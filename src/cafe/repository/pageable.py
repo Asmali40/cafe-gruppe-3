@@ -40,7 +40,7 @@ class Pageable:
             if size is None
             or not size.isdigit()
             or int(size) > MAX_PAGE_SIZE
-            or int(size) <= 0
+            or int(size) < 0
             else int(size)
         )
         return Pageable(size=size_int, number=number_int)

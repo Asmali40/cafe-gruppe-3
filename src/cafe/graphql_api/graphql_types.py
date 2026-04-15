@@ -63,7 +63,7 @@ class CafeInput:
     """Emailadresse des Cafés."""
 
     kategorie: int
-    """Kategorie (Sternebewertung 1–9)."""
+    """Kategorie (Sternebewertung 1-9)."""
 
     gruendungsdatum: date
     """Gründungsdatum des Cafés."""
@@ -95,9 +95,7 @@ class LoginResult:
 
     token: str
     """Token des eingeloggten Users."""
-
     expiresIn: str  # noqa: N815  # NOSONAR
     """Gültigkeitsdauer des Tokens."""
-
     roles: list[str]
     """Rollen des eingeloggten Users."""

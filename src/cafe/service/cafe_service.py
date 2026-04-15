@@ -47,9 +47,7 @@ class CafeService:
         with Session() as session:
             user_is_admin: Final = Role.ADMIN in user.roles
 
-            if (
-                cafe := self.repo.find_by_id(cafe_id=cafe_id, session=session)
-            ) is None:
+            if (cafe := self.repo.find_by_id(cafe_id=cafe_id, session=session)) is None:
                 if user_is_admin:
                     message: Final = f"Kein Café mit der ID {cafe_id}"
                     logger.debug("NotFoundError: {}", message)
@@ -97,9 +95,7 @@ class CafeService:
 
             # tuple mit einem "Generator"-Ausdruck
             # vgl. List Comprehension ab Python 2.0 (2000)
-            cafes_dto: Final = tuple(
-                CafeDTO(cafe) for cafe in cafe_slice.content
-            )
+            cafes_dto: Final = tuple(CafeDTO(cafe) for cafe in cafe_slice.content)
             session.commit()
 
         if excel_enabled:

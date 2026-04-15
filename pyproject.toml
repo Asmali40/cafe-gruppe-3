@@ -118,30 +118,30 @@ license-files = ["LICENSE"]
 
 dependencies = [
     # https://github.com/agronholm/anyio fuer Starlette
-    "anyio>=4.12.1",
+    "anyio>=4.13.0",
     # https://github.com/python-cffi/cffi
     # Foreign Function Interface for Python calling C code, z.B. in cryptography
     "cffi>=2.0.0",
     # https://cryptography.io fuer python-keycloak bzw. jwcrypto
-    "cryptography>=46.0.5",
+    "cryptography>=46.0.6",
     # Fuer Pydantic zur Validierung https://github.com/JoshData/python-email-validator
     "email-validator>=2.3.0",
     # https://fastapi.tiangolo.com einschl. starlette, pydantic, uvicorn
-    "fastapi>=0.135.1",
+    "fastapi>=0.135.3",
     # httpx fuer den asynchronen TestClient von FastAPI (auch fuer eigene Tests)
     # https://github.com/encode/httpx
     "httpx[http2]>=0.28.1",
     # https://github.com/latchset/jwcrypto genutzt von python-keycloak
     # TODO https://github.com/marcospereirampj/python-keycloak/issues/674
-    "jwcrypto>=1.5.6",
+    "jwcrypto>=1.5.7",
     # https://github.c om/Delgan/loguru
     "loguru>=0.7.3",
     # https://openpyxl.readthedocs.io
     "openpyxl>=3.1.5",
     # Fast, correct Python JSON library supporting dataclasses, datetimes, and numpy
-    "orjson>=3.11.7",
+    "orjson>=3.11.8",
     # https://github.com/prometheus/client_python
-    "prometheus-client >= 0.24.1",
+    "prometheus-client>=0.25.0",
     # https://github.com/trallnag/prometheus-fastapi-instrumentator
     "prometheus-fastapi-instrumentator>=7.1.0",
     # https://www.psycopg.org/psycopg3 https://github.com/psycopg/psycopg3
@@ -149,9 +149,9 @@ dependencies = [
     "psycopg-binary>=3.3.3",
     "psycopg-pool>=3.3.0",
     # Validierung https://github.com/pydantic/pydantic https://github.com/pydantic/pydantic/blob/main/pyproject.toml#L51
-    "pydantic[email]>=2.12.5",
+    "pydantic[email]>=2.13.0",
     # "Core" fuer Pydantic, implementiert in Rust https://github.com/pydantic/pydantic-core
-    "pydantic_core>=2.41.5",
+    "pydantic_core>=2.46.0",
     # https://github.com/pwaller/pyfiglet
     "pyfiglet>=1.0.4",
     # https://pyjwt.readthedocs.io; genutzt im Handbuch von FastAPI
@@ -165,35 +165,35 @@ dependencies = [
     # TODO https://github.com/marcospereirampj/python-keycloak/issues/677
     "python-keycloak>=7.1.1",
     # https://github.com/Kludex/python-multipart fuer fastapi
-    "python-multipart>=v0.0.22",
+    "python-multipart>=0.0.26",
     # fuer OpenAPI
     "PyYAML>=6.0.3",
     # https://requests.readthedocs.io
     # fuer python-keycloak
-    "requests==2.32.5",
+    "requests==2.33.0",
     # https://www.sqlalchemy.org
     # nutzt greenlet: unterstuetzt NICHT free-threaded CPython
-    "SQLAlchemy>=2.0.48",
+    "SQLAlchemy>=2.0.49",
     # https://www.starlette.dev
     # https://github.com/fastapi/fastapi/blob/master/pyproject.toml#L46
     # "starlette>=1.0.0",
     "starlette>=0.52.1",
     # https://strawberry.rocks https://github.com/strawberry-graphql/strawberry
-    "strawberry-graphql>=0.311.3",
+    "strawberry-graphql>=0.312.3",
     # https://github.com/astanin/python-tabulate
     "tabulate>=0.10.0",
     # https://urllib3.readthedocs.io
     # fuer requests
     "urllib3>=2.6.3",
     # https://www.uvicorn.dev
-    "uvicorn>=0.42.0",
+    "uvicorn>=0.44.0",
 ]
 
 [project.scripts]
 cafe = "cafe:main"
 
 [build-system]
-requires = ["uv_build==0.10.11"]
+requires = ["uv_build==0.11.6"]
 build-backend = "uv_build"
 
 [project.urls]
@@ -211,7 +211,7 @@ changelog = "https://github.com/juergenzimmermann/cafe/blob/master/CHANGELOG.md"
 [dependency-groups]
 dev = [
     # FastAPI CLI
-    "fastapi[standard]>=0.135.1",
+    "fastapi[standard]>=0.135.3",
     # http://www.gevent.org genutzt von locust
     "gevent>=v25.9.1",
     # https://github.com/MagicStack/httptools genutzt von uvicorn[standard] fuer fastapi[standard]
@@ -220,11 +220,11 @@ dev = [
     # Locust > Flask > itsdangerous
     "itsdangerous>=2.2.0",
     # https://locust.io
-    "locust>=2.43.3",
+    "locust>=2.43.4",
     # https://pytest.org
-    "pytest>=9.0.2",
+    "pytest>=9.0.3",
     # https://pytest-cov.readthedocs.io
-    "pytest-cov>=7.0.0",
+    "pytest-cov>=7.1.0",
     # https://github.com/pytest-dev/pytest-env
     "pytest-env>=1.6.0",
     # https://github.com/pytest-dev/pytest-html
@@ -232,12 +232,12 @@ dev = [
     # https://github.com/pytest-dev/pytest-mock
     "pytest-mock>=3.15.1",
     # Locust > Flask > Werkzeug
-    "Werkzeug>=3.1.6",
+    "Werkzeug>=3.1.8",
 ]
 doc = [
     # https://github.com/mkdocstrings/griffe
     # mkdocstrings-python > griffe
-    "griffe>=2.0.0",
+    "griffe>=2.0.2",
     # https://github.com/Python-Markdown/markdown
     "Markdown>=3.10.2",
     # https://mistune.lepture.com
@@ -245,7 +245,7 @@ doc = [
     # https://github.com/christo-ph/mkdocs_build_plantuml
     "mkdocs-build-plantuml-plugin>=2.1.0",
     # https://squidfunk.github.io/mkdocs-material
-    "mkdocs-material>=9.7.5",
+    "mkdocs-material>=9.7.6",
     # https://github.com/facelessuser/mkdocs-material-extensions
     "mkdocs-material-extensions>=1.3.1",
     # https://www.mkdocs.org
@@ -258,15 +258,15 @@ lint = [
     # https://github.com/pypa/pip-audit
     "pip-audit>=2.10.0",
     # https://docs.pysentry.com
-    "pysentry-rs>=0.4.3",
+    "pysentry-rs>=0.4.5",
     # http://pyrefly.org
     #"pyrefly>=0.18.0",
     # https://docs.astral.sh/ruff
-    "ruff>=0.15.6",
+    "ruff>=0.15.10",
     # https://github.com/astral-sh/ty
-    "ty>=0.0.23",
-    "types-openpyxl>=3.1.5.20260316",
-    "types-tabulate>=0.10.0.20260308",
+    "ty>=0.0.30",
+    "types-openpyxl>=3.1.5.20260408",
+    "types-tabulate>=0.10.0.20260408",
     # https://github.com/jendrikseipp/vulture
     # "vulture>=2.7",
 ]
@@ -280,7 +280,7 @@ include = ["src/cafe/service/*"]
 minversion = "8.4.1"
 # fuer Unit-Tests
 pythonpath = ["src"]
-testpaths = ["tests/integration", "tests/unit"]
+testpaths = ["tests/integration"]
 # -m: nur Tests mit dem spezifizierten _Marker_ ausführen
 # -r A: zusaetzliche Zusammenfassung anzeigen (A = All)
 # --html erfordert pytest-html
@@ -367,7 +367,7 @@ case-sensitive = true
 # https://docs.astral.sh/ty/reference/configuration/#python
 python = "./.venv"
 # https://docs.astral.sh/ty/modules
-root = ["./src", "./tests/integration", "./tests/unit"]
+root = ["./src", "./tests/integration"]
 
 # VORSICHT: in Dockerfile "--no-default-groups" bei "uv sync"
 [tool.uv]

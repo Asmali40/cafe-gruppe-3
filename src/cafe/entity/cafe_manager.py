@@ -34,4 +34,7 @@ class CafeManager(Base):
     # __repr__ fuer Entwickler/innen, __str__ fuer User
     def __repr__(self) -> str:
         """Ausgabe eines CafeManagers als String ohne die Cafe-Daten."""
-        return f"CafeManager(id={self.id}, vorname={self.vorname}, nachname={self.nachname})"
+        return (
+            f"CafeManager(id={self.id}, vorname={self.vorname}, "
+            f"nachname={self.nachname})"
+        )

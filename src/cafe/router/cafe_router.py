@@ -133,9 +133,7 @@ def _cafe_slice_to_page(
     cafe_slice: Slice[CafeDTO],
     pageable: Pageable,
 ) -> dict[str, Any]:
-    cafe_dict: Final = tuple(
-        _cafe_to_dict(cafe) for cafe in cafe_slice.content
-    )
+    cafe_dict: Final = tuple(_cafe_to_dict(cafe) for cafe in cafe_slice.content)
     page: Final = Page.create(
         content=cafe_dict,
         pageable=pageable,

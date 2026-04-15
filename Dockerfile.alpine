@@ -77,7 +77,9 @@ apk upgrade
 # https://pkgs.alpinelinux.org/package/v3.23/main/x86_64/python3-dev
 # https://pkgs.alpinelinux.org/package/v3.23/main/x86_64/musl-dev
 # https://pkgs.alpinelinux.org/package/v3.23/main/x86_64/linux-headers
-apk --no-cache add gcc=15.2.0-r2 g++=15.2.0-r2 python3-dev=3.12.12-r0 musl-dev=1.2.5-r21 linux-headers=6.16.12-r0
+# musl-dev und python3-dev auf r23/3.12.13 angehoben, da apk upgrade diese Pakete
+# auf neuere Versionen aktualisiert hat und die alten Pins nicht mehr verfügbar sind
+apk --no-cache add gcc=15.2.0-r2 g++=15.2.0-r2 python3-dev=3.12.13-r0 musl-dev=1.2.5-r23 linux-headers=6.16.12-r0
 EOF
 
 # Install the project's dependencies using the lockfile and settings

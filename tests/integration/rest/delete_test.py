@@ -40,7 +40,7 @@ def test_delete_cafe() -> None:
     )
 
     # assert
-    assert response.status_code == 204
+    assert response.status_code == 204  # noqa: PLR2004
 
 
 @mark.rest
@@ -60,4 +60,4 @@ def test_delete_cafe_not_found() -> None:
     )
 
     # assert
-    assert response.status_code == 204
+    assert response.status_code == 204  # noqa: PLR2004

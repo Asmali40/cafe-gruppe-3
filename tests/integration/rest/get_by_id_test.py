@@ -1,4 +1,4 @@
-# ruff: noqa: D103
+# ruff: noqa: D103, S101
 # Copyright (C) 2023 - present Juergen Zimmermann, Hochschule Karlsruhe
 #
 # This program is free software: you can redistribute it and/or modify
@@ -73,8 +73,8 @@ def test_get_cafe_by_id_not_found(cafe_id: int) -> None:
 @mark.get_request
 def test_get_cafe_by_id_user() -> None:
     # arrange
-    cafe_id: Final = 1001
-    token: Final = login(username="alice")
+    cafe_id: Final = 20
+    token: Final = login(username="cafeberlin")
     assert token is not None
     headers = {"Authorization": f"Bearer {token}"}
 
@@ -99,7 +99,7 @@ def test_get_cafe_by_id_user() -> None:
 @mark.parametrize("cafe_id", [1, 30])
 def test_get_cafe_by_id_not_allowed(cafe_id: int) -> None:
     # arrange
-    token: Final = login(username="alice")
+    token: Final = login(username="cafeberlin")
     assert token is not None
     headers = {"Authorization": f"Bearer {token}"}
 
@@ -119,7 +119,7 @@ def test_get_cafe_by_id_not_allowed(cafe_id: int) -> None:
 @mark.parametrize("cafe_id", [0, 999999])
 def test_get_cafe_by_id_not_allowed_not_found(cafe_id: int) -> None:
     # arrange
-    token: Final = login(username="alice")
+    token: Final = login(username="cafeberlin")
     assert token is not None
     headers = {"Authorization": f"Bearer {token}"}
 
@@ -191,9 +191,7 @@ def test_get_cafe_by_id_etag(cafe_id: int, if_none_match: str) -> None:
 
 @mark.rest
 @mark.get_request
-@mark.parametrize(
-    "cafe_id,if_none_match", [(30, 'xxx"'), (1, "xxx"), (20, "xxx")]
-)
+@mark.parametrize("cafe_id,if_none_match", [(30, 'xxx"'), (1, "xxx"), (20, "xxx")])
 def test_get_cafe_by_id_etag_invalid(cafe_id: int, if_none_match: str) -> None:
     # arrange
     token: Final = login()

@@ -12,8 +12,9 @@ docs/build
 docs/diagramme/out
 extras/**/__pycache__
 htmlcov
+infos
 log
-siteD
+site
 src/cafe/**/__pycache__
 src/cafe/cafe.egg-info
 tests/**/__pycache__
@@ -25,5 +26,20 @@ dependency-check-report.html
 
 # Sensible Daten
 .env
-extras/compose/postgres/password.txt
+sonar-project.properties
+extras/compose/db/postgres/db_password.txt
 src/cafe/config/resources/tls/private-key.pem
+src/cafe/config/resources/tls/certificate.crt
+src/cafe/config/resources/tls/key.pem
+src/cafe/config/resources/postgresql/server.crt
+src/cafe/config/resources/app.toml
+src/cafe/config/resources/postgresql/app.toml
+tests/integration/certificate.crt
+extras/compose/cafe
+extras/compose/postgres/init/tls
+extras/compose/postgres/tls
+extras/compose/postgres/password.txt
+extras/compose/keycloak/tls
+extras/compose/compose/prometheus-grafana
+extras/compose/prometheus-grafana/grafana.db
+extras/compose/prometheus-grafana/prometheus-data/

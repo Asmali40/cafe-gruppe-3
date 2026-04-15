@@ -97,9 +97,7 @@ class CafeWriteService:
 
         with Session() as session:
             if (
-                cafe_db := self.repo.find_by_id(
-                    cafe_id=cafe_id, session=session
-                )
+                cafe_db := self.repo.find_by_id(cafe_id=cafe_id, session=session)
             ) is None:
                 raise NotFoundError(cafe_id)
             if cafe_db.version > version:

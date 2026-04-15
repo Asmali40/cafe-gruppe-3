@@ -6,8 +6,8 @@ from cafe.repository.session_factory import Session, engine
 from cafe.repository.slice import Slice
 
 __all__ = [
-    "CafeRepository",
     "MAX_PAGE_SIZE",
+    "CafeRepository",
     "Pageable",
     "Session",
     "Slice",

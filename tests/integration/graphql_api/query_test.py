@@ -34,11 +34,6 @@ def test_query_id() -> None:
                         vorname
                         nachname
                     }
-                    produkte {
-                        name
-                        preis
-                        waehrung
-                    }
                     username
                 }
             }
@@ -99,7 +94,7 @@ def test_query_email() -> None:
     query: Final = {
         "query": """
             {
-                cafes(suchparameter: {email: "admin@acme.com"}) {
+                cafes(suchparameter: {email: "cafeberlin@cafe.de"}) {
                     id
                     version
                     name
@@ -110,11 +105,6 @@ def test_query_email() -> None:
                     cafeManager {
                         vorname
                         nachname
-                    }
-                    produkte {
-                        name
-                        preis
-                        waehrung
                     }
                     username
                 }
@@ -188,11 +178,6 @@ def test_query_name() -> None:
                     cafeManager {
                         vorname
                         nachname
-                    }
-                    produkte {
-                        name
-                        preis
-                        waehrung
                     }
                     username
                 }

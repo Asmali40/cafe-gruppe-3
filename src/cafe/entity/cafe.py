@@ -10,8 +10,8 @@ from sqlalchemy.orm import Mapped, mapped_column, reconstructor, relationship
 
 from cafe.entity.base import Base
 from cafe.entity.cafe_manager import CafeManager
-from cafe.entity.produkt import Produkt
 from cafe.entity.kaffeeart import Kaffeeart
+from cafe.entity.produkt import Produkt
 
 
 # noinspection PyUnresolvedReferences
@@ -24,12 +24,12 @@ class Cafe(Base):
     """Der Name des Cafés."""
 
     kategorie: Mapped[int]
-    """Die Kategorie (Sternebewertung 1–9)."""
+    """Die Kategorie (Sternebewertung 1-9)."""
 
     gruendungsdatum: Mapped[date]
     """Das Gründungsdatum."""
 
-    kaffeesorten: InitVar[list[Kaffeeart] | None]
+    kaffeesorten: InitVar[list[Kaffeeart] | None]  # ty: ignore[invalid-type-form]
     """Die transiente Liste mit Kaffeesorten als Enum-Werte."""
 
     id: Mapped[int | None] = mapped_column(
@@ -146,6 +146,6 @@ class Cafe(Base):
             + f"name={self.name}, email={self.email}, "
             + f"kategorie={self.kategorie}, "
             + f"gruendungsdatum={self.gruendungsdatum}, "
-            + f"kaffeesorten_json={self.kaffeesorten_json}, "
+            + f"kaffeesorten_json={self.kaffeesorten_json}, username={self.username}, "
             + f"erzeugt={self.erzeugt}, aktualisiert={self.aktualisiert})"
         )

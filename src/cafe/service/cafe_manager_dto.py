@@ -1,4 +1,3 @@
-
 """DTO-Klasse für den CafeManager, insbesondere ohne Decorators für SQLAlchemy."""
 
 from dataclasses import dataclass
